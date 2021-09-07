@@ -25,7 +25,7 @@ public class AppConfig implements WebMvcConfigurer {
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean entityManagerFactoryBean
                 = new LocalEntityManagerFactoryBean();
-        entityManagerFactoryBean.setPersistenceUnitName("bookstorePersistenceUnit");
+        entityManagerFactoryBean.setPersistenceUnitName("mealtrackerPersistenceUnit");
         return entityManagerFactoryBean;
     }
 
