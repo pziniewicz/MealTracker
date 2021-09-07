@@ -22,7 +22,4 @@ public class User {
     private String password;
     private boolean isAdmin;
 
-    @OneToMany(mappedBy = "user")
-    private List<Plan> plans = new ArrayList<>();
-
 }

@@ -28,9 +28,10 @@ public class Plan {
     private Integer fatQuantity;
     private boolean isActive;
 
-    @ManyToOne
-    private User user;
-
     @OneToMany(mappedBy = "plan")
     private List<Meal> meals = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
