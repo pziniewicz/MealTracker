@@ -14,6 +14,6 @@ public class MealName {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
-    private Integer order;
+//    private Long order;
 
 }
