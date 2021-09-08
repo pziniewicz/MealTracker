@@ -26,11 +26,11 @@
                             <i class="fas fa-tasks"></i>Pomiary</a>
                     </li>
                     <li>
-                        <a href="calendar.html">
+                        <a href="/new">
                             <i class="fas fa-calendar-alt"></i>Kalendarz</a>
                     </li>
                     <li>
-                        <a href="/new">
+                        <a href="/plans">
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>

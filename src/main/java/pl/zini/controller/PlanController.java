@@ -23,4 +23,16 @@ public class PlanController {
 //        model.addAttribute(article);
         return "newPlan";
     }
+
+    @GetMapping(value = "/plans", produces = "text/html;charset=utf-8")
+    public String plans(Long id, Model model) {
+//       Article article;
+//        if (id != null) {
+//            article = articleService.getById(id);
+//        } else {
+//            article = new Article();
+//        }
+//        model.addAttribute(article);
+        return "plans";
+    }
 }
