@@ -20,6 +20,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private boolean isAdmin;
+    private String role;
 
 }

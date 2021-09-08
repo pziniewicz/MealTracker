@@ -1,6 +1,11 @@
 package pl.zini;
 
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
 
 public class AppInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
@@ -20,4 +25,6 @@ public class AppInitializer extends
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+
 }

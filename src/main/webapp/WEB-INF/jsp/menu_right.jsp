@@ -18,7 +18,7 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li>
-                        <a href="inbox.html">
+                        <a href="/">
                             <i class="fas fa-chart-bar"></i>Tablica</a>
                     </li>
                     <li>
@@ -30,7 +30,7 @@
                             <i class="fas fa-calendar-alt"></i>Kalendarz</a>
                     </li>
                     <li>
-                        <a href="form.html">
+                        <a href="/new">
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>
