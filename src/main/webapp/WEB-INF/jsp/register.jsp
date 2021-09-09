@@ -14,7 +14,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -51,26 +51,35 @@
                         </a>
                     </div>
                     <div class="login-form">
-                        <form action="" method="post" modelAttribute="user">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label>Imię</label>
+                                <input class="au-input au-input--full" type="text" name="firstName" placeholder="Imię">
+                            </div>
+                            <div class="form-group">
+                                <label>Nazwisko</label>
+                                <input class="au-input au-input--full" type="text" name="lastName" placeholder="Nazwisko">
+                            </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <label>Hasło</label>
-                                <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                <input class="au-input au-input--full" type="password" name="password" placeholder="Hasło">
                             </div>
-<%--                                <label>--%>
-<%--                                    <a href="#">Forgotten Password?</a>--%>
-<%--                                </label>--%>
-                            </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Utwórz konto</button>
+                            <!--                                <div class="social-login-content">-->
+                            <!--                                    <div class="social-button">-->
+                            <!--                                        <button class="au-btn au-btn&#45;&#45;block au-btn&#45;&#45;blue m-b-20">register with facebook</button>-->
+                            <!--                                        <button class="au-btn au-btn&#45;&#45;block au-btn&#45;&#45;blue2">register with twitter</button>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
                         </form>
                         <div class="register-link">
                             <p>
-                                Nie masz konta?
-                                <a href="/register">Zarejestruj sie tutaj</a>
+                                Już masz konto?
+                                <a href="/login">Zaloguj</a>
                             </p>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/user")
 public class HomeController {
 
     @GetMapping("/")
@@ -17,7 +17,5 @@ public class HomeController {
     @ResponseBody
     public String admin() { return "admin"; }
 
-    @GetMapping("/login")
-    @ResponseBody
-    public String login() { return "login"; }
+
 }

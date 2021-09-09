@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/212")
 public class UserController {
 
     private final UserService userService;
