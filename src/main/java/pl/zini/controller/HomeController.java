@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/")
-    public String home() { return "index"; }
+    @ResponseBody
+    public String home() { return "home"; }
+
     @GetMapping("/admin")
     @ResponseBody
     public String admin() { return "admin"; }
+
+    @GetMapping("/login")
+    @ResponseBody
+    public String login() { return "login"; }
 }

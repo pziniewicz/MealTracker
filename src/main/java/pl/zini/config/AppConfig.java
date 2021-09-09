@@ -1,4 +1,4 @@
-package pl.zini;
+package pl.zini.config;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +42,5 @@ public class AppConfig implements WebMvcConfigurer {
         localeResolver.setDefaultLocale(new Locale("pl","PL"));
         return localeResolver;
     }
-
-
 
 }

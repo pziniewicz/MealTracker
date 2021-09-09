@@ -3,9 +3,8 @@ package pl.zini.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.awt.print.Book;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -16,10 +15,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @NotBlank
+    @Email
     private String email;
+
     private String password;
+
     private String role;
 
 }
