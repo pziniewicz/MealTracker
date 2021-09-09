@@ -39,7 +39,7 @@
                     </li>
                     <li></li>
                     <li>
-                        <a href="register.html">
+                        <a href="/user">
                             <i class="fas fa-user"></i>Uzytkownicy</a>
                     </li>
                 </ul>
