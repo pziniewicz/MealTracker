@@ -1,6 +1,7 @@
 package pl.zini.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import pl.zini.model.Role;
 import pl.zini.model.User;
 import pl.zini.repository.RoleRepository;
@@ -9,6 +10,7 @@ import pl.zini.repository.UserRepository;
 import java.util.Arrays;
 import java.util.HashSet;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;

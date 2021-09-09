@@ -19,46 +19,46 @@ import java.util.List;
 @RequestMapping("/212")
 public class UserController {
 
-    private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/user/create")
-    public String create(Long id, Model model) {
-        User user;
-        if (id != null) {
-            user = userService.getById(id);
-        } else {
-            user = new User();
-        }
-        model.addAttribute(user);
-        return "createUser";
-    }
-
-    @PostMapping("/user/create")
-    public String create(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "createUser";
-        }
-        userService.save(user);
-        return "redirect:/user/";
-    }
-
-    @RequestMapping("/user")
-    public String getAll(Model model) {
-        List<User> userList = userService.findAll();
-        model.addAttribute("categories", userList);
-        return "users";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable String id) {
-        User user = userService.getById(Long.parseLong(id));
-        userService.delete(user);
-        return "redirect:/user/";
-    }
+////    private final UserService userService;
+////
+////    @Autowired
+////    public UserController(UserService userService) {
+////        this.userService = userService;
+////    }
+//
+//    @GetMapping("/user/create")
+//    public String create(Long id, Model model) {
+//        User user;
+////        if (id != null) {
+////            user = userService.getById(id);
+////        } else {
+////            user = new User();
+////        }
+//        model.addAttribute(user);
+//        return "createUser";
+//    }
+//
+//    @PostMapping("/user/create")
+//    public String create(@Valid User user, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "createUser";
+//        }
+//        userService.save(user);
+//        return "redirect:/user/";
+//    }
+//
+//    @RequestMapping("/user")
+//    public String getAll(Model model) {
+//        List<User> userList = userService.findAll();
+//        model.addAttribute("categories", userList);
+//        return "users";
+//    }
+//
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable String id) {
+//        User user = userService.getById(Long.parseLong(id));
+//        userService.delete(user);
+//        return "redirect:/user/";
+//    }
 
 }
