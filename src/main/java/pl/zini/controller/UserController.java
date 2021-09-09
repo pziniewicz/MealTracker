@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.zini.model.User;
 import pl.zini.service.UserService;
+import pl.zini.service.UserServiceImpl;
+import pl.zini.web.dto.UserRegistrationDto;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,18 +22,18 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @GetMapping("/user/create")
     public String create(Long id, Model model) {
         User user;
         if (id != null) {
-            user = userService.getById(id);
+            user = userServiceImpl.getById(id);
         } else {
             user = new User();
         }
@@ -40,25 +42,25 @@ public class UserController {
     }
 
     @PostMapping("/user/create")
-    public String create(@Valid User user, BindingResult result) {
+    public String create(@Valid UserRegistrationDto userRegistrationDto, BindingResult result) {
         if (result.hasErrors()) {
             return "createUser";
         }
-        userService.save(user);
+        userServiceImpl.save(userRegistrationDto);
         return "redirect:/user/";
     }
 
     @RequestMapping("/user")
     public String getAll(Model model) {
-        List<User> userList = userService.findAll();
+        List<User> userList = userServiceImpl.findAll();
         model.addAttribute("categories", userList);
         return "users";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id) {
-        User user = userService.getById(Long.parseLong(id));
-        userService.delete(user);
+        User user = userServiceImpl.getById(Long.parseLong(id));
+        userServiceImpl.delete(user);
         return "redirect:/user/";
     }
 

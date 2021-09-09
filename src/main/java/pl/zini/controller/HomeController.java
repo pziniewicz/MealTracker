@@ -1,5 +1,6 @@
 package pl.zini.controller;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("")
+@Primary
 public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

@@ -4,40 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zini.model.User;
 import pl.zini.repository.UserRepository;
+import pl.zini.web.dto.UserRegistrationDto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service
-public class UserService {
+public interface UserService extends UserDetailsService {
 
-    private final UserRepository userRepository;
+    User findByEmail(String email);
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    User save(UserRegistrationDto registration);
 
-    public User getById(Long id) {
-        return userRepository.getById(id);
-    }
+    User getById(Long id);
 
-    public void save(User user) {
-        userRepository.save(user);
-    }
+    List<User> findAll();
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    public void delete(User user) {
-        userRepository.delete(user);
-    }
-
-
+    void delete(User user);
 }
