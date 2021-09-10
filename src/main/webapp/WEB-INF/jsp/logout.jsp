@@ -4,11 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Index</title>
+    <title>Logout</title>
 </head>
 <body>
-<a href="/login">Zaloguj sie</a>
-<p><a href="/logout">Logout</a>
-</p>
+<% session.invalidate(); %>
+<p>You have been successfully logout</p>
 </body>
 </html>

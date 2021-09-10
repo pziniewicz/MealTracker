@@ -1,10 +1,10 @@
-package pl.zini.config;
+package pl.zini;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import pl.zini.config.AppConfig;
 
 public class AppInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
-
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -23,3 +23,4 @@ public class AppInitializer extends
 
 
 }
+

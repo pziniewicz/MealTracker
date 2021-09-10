@@ -1,26 +1,14 @@
-package pl.zini.web;
+package pl.zini;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.zini.model.User;
-import pl.zini.repository.UserRepository;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 public class Application extends SpringBootServletInitializer {
-
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-    public void run(String... args) throws Exception {
-        userRepository.save(new User("Pawel", "Ziniewicz", "zini@op.pl", bCryptPasswordEncoder.encode("1234")));
-    }
 }
+

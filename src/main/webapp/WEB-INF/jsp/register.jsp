@@ -1,6 +1,13 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+>>>>>>> main
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +58,39 @@
                         </a>
                     </div>
                     <div class="login-form">
+<<<<<<< HEAD
+                        <form:form action="" method="post" modelAttribute="user">
+                            <div class="form-group">
+                                <form:label path="firstName">Imię</form:label>
+                                <form:input path="firstName" class="au-input au-input--full" placeholder="Imię"/>
+                                <form:errors path="firstName" cssClass="error" element="div"/>
+                            </div>
+                            <div class="form-group">
+                                <form:label path="lastName">Nazwisko</form:label>
+                                <form:input path="lastName" class="au-input au-input--full" placeholder="Nazwisko"/>
+                                <form:errors path="lastName" cssClass="error" element="div"/>
+                            </div>
+                            <div class="form-group">
+                                <form:label path="email">Email</form:label>
+                                <form:input path="email" type="email" class="au-input au-input--full" placeholder="Email"/>
+                                <form:errors path="email" cssClass="error" element="div"/>
+                            </div>
+                            <div class="form-group">
+                                <form:label path="password">Hasło</form:label>
+                                <form:input path="password" type="password"  class="au-input au-input--full" placeholder="Hasło"/>
+                                <form:errors path="password" cssClass="error" element="div"/>
+                            </div>
+
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Utwórz konto
+                            </button>
+                            <!-- <div class="social-login-content">-->
+                            <!-- <div class="social-button">-->
+                            <!-- <button class="au-btn au-btn&#45;&#45;block au-btn&#45;&#45;blue m-b-20">register with facebook</button>-->
+                            <!-- <button class="au-btn au-btn&#45;&#45;block au-btn&#45;&#45;blue2">register with twitter</button>-->
+                            <!-- </div>-->
+                            <!-- </div>-->
+                        </form:form>
+=======
                         <form action="" method="post">
                             <div class="form-group">
                                 <label>Imię</label>
@@ -76,6 +116,7 @@
                             <!--                                    </div>-->
                             <!--                                </div>-->
                         </form>
+>>>>>>> main
                         <div class="register-link">
                             <p>
                                 Już masz konto?
@@ -95,7 +136,11 @@
 <!-- Bootstrap JS-->
 <script src="vendor/bootstrap-4.1/popper.min.js"></script>
 <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<<<<<<< HEAD
+<!-- Vendor JS -->
+=======
 <!-- Vendor JS       -->
+>>>>>>> main
 <script src="vendor/slick/slick.min.js">
 </script>
 <script src="vendor/wow/wow.min.js"></script>

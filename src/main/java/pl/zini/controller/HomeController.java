@@ -9,25 +9,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("")
-@Primary
+@RequestMapping("/user")
 public class HomeController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+    @GetMapping("/")
+    @ResponseBody
+    public String home() { return "home"; }
 
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+    @GetMapping("/admin")
+    @ResponseBody
+    public String admin() { return "admin"; }
 
-        return "login";
-    }
 
-    @RequestMapping(value = {
-            "/"
-    }, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "index";
-    }
+
+//@RequestMapping("")
+//@Primary
+//public class HomeController {
+//
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login(Model model, String error, String logout) {
+//        if (error != null)
+//            model.addAttribute("error", "Your username and password is invalid.");
+//
+//        if (logout != null)
+//            model.addAttribute("message", "You have been logged out successfully.");
+//
+//        return "login";
+//    }
+//
+//    @RequestMapping(value = {
+//            "/"
+//    }, method = RequestMethod.GET)
+//    public String welcome(Model model) {
+//        return "index";
+//    }
+
 }
