@@ -31,11 +31,20 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Long id, Model model) {
+        User user = new User();
+        model.addAttribute(user);
         return "login";
     }
 
+    @PostMapping("/login")
+    public String loggedin(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "login";
+        }
 
+        return "redirect:/dashboard";
+    }
 
     @GetMapping("/register")
     public String register(Long id, Model model) {
@@ -64,4 +73,10 @@ public class MainController {
         User entityUser = customUser.getUser();
         return "this is user id " + entityUser.getId();
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
 }

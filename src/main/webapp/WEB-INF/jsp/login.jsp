@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,33 +52,35 @@
                         </a>
                     </div>
                     <div class="login-form">
-                        <form action="" method="post" modelAttribute="user">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label>Hasło</label>
-                                <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
-                            </div>
-<%--                                <label>--%>
-<%--                                    <a href="#">Forgotten Password?</a>--%>
-<%--                                </label>--%>
-                            </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-
-                        </form>
-                        <div class="register-link">
-                            <p>
-                                Nie masz konta?
-                                <a href="/register">Zarejestruj sie tutaj</a>
-                            </p>
+                        <form:form action="" method="post" modelAttribute="user">
+                        <div class="form-group">
+                            <form:label path="email">Email</form:label>
+                            <form:input path="email" type="email" class="au-input au-input--full" placeholder="Email"/>
+                            <form:errors path="email" cssClass="error" element="div"/>
                         </div>
+                        <div class="form-group">
+                            <form:label path="password">Hasło</form:label>
+                            <form:input path="password" type="password" class="au-input au-input--full"
+                                        placeholder="Hasło"/>
+                            <form:errors path="password" cssClass="error" element="div"/>
+                        </div>
+                            <%--                                <label>--%>
+                            <%--                                    <a href="#">Forgotten Password?</a>--%>
+                            <%--                                </label>--%>
+                    </div>
+                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                    </form:form>
+                    <div class="register-link">
+                        <p>
+                            Nie masz konta?
+                            <a href="/register">Zarejestruj sie tutaj</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 

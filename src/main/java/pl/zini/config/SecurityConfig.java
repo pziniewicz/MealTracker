@@ -20,6 +20,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select email,password,enabled "
+                        + "from users "
+                        + "where email = ?")
+                .authoritiesByUsernameQuery("SELECT u.email, r.role  FROM users u "
+                        + "Left JOIN user_role ur on u.id = ur.user_id "
+                        + "JOIN roles r on r.role_id = ur.role_id "
+                        + "WHERE u.email = ? limit 1;");
+    }
+
     @Bean
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
