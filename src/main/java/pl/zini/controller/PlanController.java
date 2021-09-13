@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/123")
+@RequestMapping("/plans1")
 public class PlanController {
 
 
@@ -24,15 +24,15 @@ public class PlanController {
         return "newPlan";
     }
 
-    @GetMapping(value = "/plans", produces = "text/html;charset=utf-8")
-    public String plans(Long id, Model model) {
-//       Article article;
-//        if (id != null) {
-//            article = articleService.getById(id);
-//        } else {
-//            article = new Article();
-//        }
-//        model.addAttribute(article);
-        return "plans";
-    }
+//    @GetMapping(value = "/plans", produces = "text/html;charset=utf-8")
+//    public String plans() {
+////       Article article;
+////        if (id != null) {
+////            article = articleService.getById(id);
+////        } else {
+////            article = new Article();
+////        }
+////        model.addAttribute(article);
+//        return "plans";
+//    }
 }

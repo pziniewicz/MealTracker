@@ -23,11 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.jdbcAuthentication()
+        auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select email,password,enabled "
+                .usersByUsernameQuery("select email, password, enabled "
                         + "from users "
-                        + "where email = ?")
+                        + "where email = ? limit 1;")
                 .authoritiesByUsernameQuery("SELECT u.email, r.role  FROM users u "
                         + "Left JOIN user_role ur on u.id = ur.user_id "
                         + "JOIN roles r on r.role_id = ur.role_id "
@@ -42,17 +42,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user").authenticated()
-                .anyRequest().permitAll()
-                .and().formLogin().loginPage("/login")
-                .and().logout().logoutSuccessUrl("/")
-                .permitAll();;
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+//                .loginPage("/login")
+                .defaultSuccessUrl("/dashboard")
+            .permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 }

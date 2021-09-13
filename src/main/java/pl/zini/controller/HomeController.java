@@ -17,5 +17,8 @@ public class HomeController {
     @ResponseBody
     public String admin() { return "admin"; }
 
+    @GetMapping("/users")
+    public String template() { return "users"; }
+
 
 }

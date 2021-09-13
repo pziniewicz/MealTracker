@@ -17,6 +17,7 @@ public class Plan {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+    private double height;
     private Double weight;
     private String activity;
     private Integer caloricDemand;
