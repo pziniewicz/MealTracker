@@ -43,10 +43,10 @@ public class MainController {
     }
 
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+//    @RequestMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
 
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    public String loginPage(@RequestParam(value = "error", required = false) String error,
@@ -119,6 +119,11 @@ public class MainController {
     @GetMapping("/user/register")
     public String register() {
         return "register";
+    }
+
+    @GetMapping("/users")
+    public String showusers() {
+        return "users";
     }
 
     @GetMapping(value = "/plans/new", produces = "text/html;charset=utf-8")
