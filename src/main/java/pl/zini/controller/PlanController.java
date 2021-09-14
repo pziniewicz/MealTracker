@@ -4,12 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.zini.model.CurrentUser;
 import pl.zini.model.Plan;
+import pl.zini.model.User;
 import pl.zini.service.PlanService;
 import pl.zini.service.UserServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -37,17 +41,20 @@ public class PlanController {
     }
 
     @PostMapping(value = "/create", produces = "text/plain;charset=UTF-8")
-    public String create(@Valid Plan plan, BindingResult result) {
+    public String create(@Valid Plan plan, BindingResult result, HttpServletRequest request) {
         if (result.hasErrors()) {
             return "plan/newPlan";
         }
+        Principal principal = request.getUserPrincipal();
+        plan.setUser(userService.findByEmail(principal.getName()));
         planService.save(plan);
         return "redirect:/plan/";
     }
 
-    @RequestMapping("/")
-    public String getAll(Model model) {
-        List<Plan> plans = planService.findAll();
+    @RequestMapping(value = "/", produces = "text/plain;charset=UTF-8")
+    public String getAll(Model model, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
         model.addAttribute("plans", plans);
         return "plan/plans";
     }
@@ -56,6 +63,19 @@ public class PlanController {
     public String delete(@PathVariable String id) {
         Plan plan = planService.getById(Long.parseLong(id));
         planService.delete(plan);
+        return "redirect:/plan/";
+    }
+
+    @GetMapping("/setActive/{id}")
+    public String setActive(@PathVariable String id, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
+        Plan plan = planService.getById(Long.parseLong(id));
+        for (Plan plan1 : plans) {
+            plan1.setIsActive(0);
+        }
+        plan.setIsActive(1);
+        planService.save(plan);
         return "redirect:/plan/";
     }
 

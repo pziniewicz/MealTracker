@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -28,7 +29,7 @@ public class Plan {
     private Integer carbsQuantity;
     private Integer proteinQuantity;
     private Integer fatQuantity;
-    private boolean isActive;
+    private Integer isActive;
 
     @OneToMany(mappedBy = "plan")
     private List<Meal> meals = new ArrayList<>();
@@ -64,5 +65,18 @@ public class Plan {
     public void setFatQuantity(Double caloric) {
         Double fat = ((fatPercent / 100) * caloric) / 9.45;
         this.fatQuantity = fat.intValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plan plan = (Plan) o;
+        return Double.compare(plan.height, height) == 0 && Objects.equals(id, plan.id) && Objects.equals(name, plan.name) && Objects.equals(weight, plan.weight) && Objects.equals(gender, plan.gender) && Objects.equals(age, plan.age) && Objects.equals(caloricDemand, plan.caloricDemand) && Objects.equals(carbsPercent, plan.carbsPercent) && Objects.equals(proteinPercent, plan.proteinPercent) && Objects.equals(fatPercent, plan.fatPercent) && Objects.equals(carbsQuantity, plan.carbsQuantity) && Objects.equals(proteinQuantity, plan.proteinQuantity) && Objects.equals(fatQuantity, plan.fatQuantity) && Objects.equals(isActive, plan.isActive) && Objects.equals(meals, plan.meals) && Objects.equals(user, plan.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, height, weight, gender, age, caloricDemand, carbsPercent, proteinPercent, fatPercent, carbsQuantity, proteinQuantity, fatQuantity, isActive, meals, user);
     }
 }

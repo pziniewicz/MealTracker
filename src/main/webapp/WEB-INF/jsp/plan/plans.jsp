@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -39,29 +40,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="tr-shadow">
-                        <td>Lori Lynch</td>
-                        <td>
-                            <span class="block-email">lori@example.com</span>
-                        </td>
-                        <td class="desc">Samsung S8 Black</td>
-                        <td>
-                            <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                    <i class="zmdi zmdi-mail-send"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                    <i class="zmdi zmdi-more"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    <c:forEach items="${plans}" var="p">
+                        <tr class="tr-shadow">
+                            <td>${p.name}</td>
+                            <td>
+    <span>
+    Waga: ${p.weight} Wzrost: ${p.height}<br>
+    Wiek: ${p.age} Płeć: ${p.gender}<br>
+    Makra: <br>
+    B: ${p.proteinQuantity} W: ${p.carbsQuantity} T: ${p.fatQuantity}
+    </span>
+                            </td>
+                            <td class="desc">${p.isActive}</td>
+                            <td>
+                                <div class="table-data-feature">
+                                    <a href="/plan/setActive/${p.id}">
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="SetActive">
+                                        <i class="zmdi zmdi-mail-send"></i>
+                                    </button>
+                                    </a>
+                                    <a href="/plan/create?id=${p.id}">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="/plan/delete/${p.id}">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

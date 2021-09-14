@@ -31,7 +31,11 @@ public class MainController {
         return "dashboard";
     }
 
-
+    @GetMapping("/login")
+    public String login() {
+        System.out.println("Login");
+        return "login";
+    }
 
     @GetMapping("/register")
     public String register(Long id, Model model) {
@@ -51,7 +55,7 @@ public class MainController {
 
     @GetMapping("/logout")
     public String logout() {
-        return "logout";
+        return "redirect:/login";
     }
 
     @GetMapping("/admin")
@@ -93,7 +97,7 @@ public class MainController {
         if (result.hasErrors()) {
             return "newPlan";
         }
-        //bookService.save(book);
+
         return "redirect:/dashboard";
     }
 }

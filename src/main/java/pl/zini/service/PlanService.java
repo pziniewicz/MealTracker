@@ -20,15 +20,20 @@ public class PlanService {
     }
 
     public void save(Plan plan) {
+        plan.setIsActive(1);
         plan.setCaloricDemandAndMacros();
         planRepository.save(plan);
     }
 
-    public List<Plan> findAll() {
-        return planRepository.findAll();
+    public List<Plan> findByUserId(Long userId) {
+        return planRepository.findByUserId(userId);
     }
 
     public void delete(Plan article) {
         planRepository.delete(article);
     }
+    public List<Plan> findAll() {
+        return planRepository.findAll();
+    }
+
 }
