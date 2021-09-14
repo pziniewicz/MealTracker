@@ -35,7 +35,7 @@
                             <i class="fas fa-calendar-alt"></i>Kalendarz</a>
                     </li>
                     <li>
-                        <a href="/plans">
+                        <a href="/plan/">
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>

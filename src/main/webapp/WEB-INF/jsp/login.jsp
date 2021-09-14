@@ -72,25 +72,15 @@
                             <label for="username">E-mail</label>
                             <input class="au-input au-input--full" type="username" name="username" id="username"
                                    placeholder="Email">
-                            <%--                            <form:label path="email">Email</form:label>--%>
-                            <%--                            <form:input path="email" type="email" class="au-input au-input--full" placeholder="Email"/>--%>
-                            <%--                            <form:errors path="email" cssClass="error" element="div"/>--%>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input class="au-input au-input--full" type="password" name="password" id="password"
                                    placeholder="Password">
-                            <%--                            <form:label path="password">Hasło</form:label>--%>
-                            <%--                            <form:input path="password" type="password" class="au-input au-input--full"--%>
-                            <%--                                        placeholder="Hasło"/>--%>
-                            <%--                            <form:errors path="password" cssClass="error" element="div"/>--%>
                         </div>
                         <input type="hidden"
                                name="${_csrf.parameterName}"
                                value="${_csrf.token}"/>
-                        <%--                                <label>--%>
-                        <%--                                    <a href="#">Forgotten Password?</a>--%>
-                        <%--                                </label>--%>
                 </div>
                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Zaloguj</button>
                 </form>
@@ -133,4 +123,3 @@
 </body>
 
 </html>
-<!-- end document-->

@@ -26,57 +26,12 @@ public class MainController {
         this.userService = userService;
     }
 
-    @ModelAttribute("mealNames")
-    public Collection<String> mealNames() {
-        List<String> mealNames = new ArrayList<String>();
-        mealNames.add("Śniadanie");
-        mealNames.add("II śniadanie");
-        mealNames.add("Lunch");
-        mealNames.add("Przekąska");
-        mealNames.add("Obiad");
-        mealNames.add("Kolacja");
-        return mealNames;
-    }
     @GetMapping("/")
     public String home() {
         return "dashboard";
     }
 
 
-//    @RequestMapping("/login")
-//    public String login() {
-//        return "login";
-//    }
-
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String loginPage(@RequestParam(value = "error", required = false) String error,
-//                            @RequestParam(value = "logout", required = false) String logout,
-//                            Model model) {
-//        String errorMessge = null;
-//        if(error != null) {
-//            errorMessge = "Username or Password is incorrect !!";
-//        }
-//        if(logout != null) {
-//            errorMessge = "You have been successfully logged out !!";
-//        }
-//        model.addAttribute("errorMessage", errorMessge);
-//        return "login";
-//    }
-//
-//    @GetMapping("/login")
-//    public String login(Long id, Model model) {
-//        User user = new User();
-//        model.addAttribute(user);
-//        return "login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String loggedin(@Valid User user, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "login";
-//        }
-//        return "/dashboard";
-//    }
 
     @GetMapping("/register")
     public String register(Long id, Model model) {
@@ -115,6 +70,7 @@ public class MainController {
     public String plans() {
         return "plans";
     }
+
 
     @GetMapping("/user/register")
     public String register() {

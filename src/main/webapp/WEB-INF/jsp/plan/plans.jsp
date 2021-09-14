@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="header.jsp"/>
-<jsp:include page="menu_right.jsp"/>
+<jsp:include page="../header.jsp"/>
+<jsp:include page="../menu_right.jsp"/>
 
-<jsp:include page="topsection.jsp"/>
+<jsp:include page="../topsection.jsp"/>
 
 <!-- BREADCRUMB-->
 <section class="au-breadcrumb m-t-40">
@@ -21,7 +21,7 @@
             <h3 class="title-5 m-b-35">Lista planow</h3>
             <div class="table-data__tool">
                 <div class="table-data__tool-right">
-                    <a href="/plans/new">
+                    <a href="/plan/create">
                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                             <i class="zmdi zmdi-plus"></i>Nowy plan
                         </button>
@@ -70,4 +70,4 @@
     </div>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
