@@ -27,8 +27,8 @@
                             <i class="fas fa-chart-bar"></i>Tablica</a>
                     </li>
                     <li>
-                        <a href="template.jsp">
-                            <i class="fas fa-tasks"></i>Pomiary</a>
+                        <a href="/meals">
+                            <i class="fas fa-tasks"></i>Posilki</a>
                     </li>
                     <li>
                         <a href="/new">

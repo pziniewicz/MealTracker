@@ -23,7 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+        auth.jdbcAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select email, password, enabled "
                         + "from users "
@@ -42,14 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/dashboard")
-            .permitAll()
+                .permitAll()
                 .and()
-                .logout().permitAll();
+                .logout()
+                .permitAll();
     }
 
     @Bean

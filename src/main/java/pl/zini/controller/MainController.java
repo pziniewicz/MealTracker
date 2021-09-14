@@ -58,11 +58,9 @@ public class MainController {
         return "redirect:/login";
     }
 
-    @GetMapping("/admin")
-    @ResponseBody
-    public String admin(@AuthenticationPrincipal CurrentUser customUser) {
-        User entityUser = customUser.getUser();
-        return "this is user id " + entityUser.getId();
+    @GetMapping("/meals")
+    public String meals() {
+        return "meals";
     }
 
     @GetMapping("/dashboard")
