@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class IngridientServiceApi {
+public class ProductServiceApi {
 
     public List<ProductFromApi> productSearch(String productName) throws IOException {
     String urlAddress = "https://pl.openfoodfacts.org/cgi/search.pl?search_terms="

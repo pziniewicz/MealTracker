@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.zini.service.IngridientServiceApi;
+import pl.zini.service.ProductServiceApi;
 
 import java.io.IOException;
 
@@ -14,9 +14,9 @@ import java.io.IOException;
 public class JsonReadController {
 
 
-    private final IngridientServiceApi ingridientServiceApi;
+    private final ProductServiceApi ingridientServiceApi;
 
-    public JsonReadController(IngridientServiceApi ingridientServiceApi) {
+    public JsonReadController(ProductServiceApi ingridientServiceApi) {
         this.ingridientServiceApi = ingridientServiceApi;
     }
 

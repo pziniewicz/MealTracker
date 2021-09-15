@@ -12,7 +12,7 @@
         <div class="menu-sidebar2__content js-scrollbar1">
             <div class="account2">
                 <div class="image img-cir img-120">
-                    <img src="/images/icon/avatar-big-01.jpg" alt="Pawel Ziniewicz" />
+                    <img src="#" alt="" />
                 </div>
 <%--                <h4 class="name">Pawel Ziniewicz</h4>--%>
                 <h4><center><security:authorize access="isAuthenticated()">
@@ -39,7 +39,7 @@
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/plan/product">
                             <i class="fas fa-shopping-basket"></i>Wyszukaj produkt</a>
                     </li>
                     <li></li>

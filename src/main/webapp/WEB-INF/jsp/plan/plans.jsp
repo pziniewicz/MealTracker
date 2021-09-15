@@ -55,9 +55,10 @@
                             <td>
                                 <div class="table-data-feature">
                                     <a href="/plan/setActive/${p.id}">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="SetActive">
-                                        <i class="zmdi zmdi-mail-send"></i>
-                                    </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                                title="SetActive">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
                                     </a>
                                     <a href="/plan/create?id=${p.id}">
                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
