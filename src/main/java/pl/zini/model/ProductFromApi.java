@@ -25,10 +25,10 @@ public class ProductFromApi {
     }
 
     public void setName(String name) {
-        if (name == null) {
-            this.name = this.name2;
-        } else {
+        if (name != null) {
             this.name = name;
+        } else {
+            this.name = name2;
         }
     }
 

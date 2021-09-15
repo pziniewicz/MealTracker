@@ -28,9 +28,9 @@
                 <!-- DATA TABLE -->
                 <form method="get">
                 <div class="alert alert-primary">
-                    <h3><input type="text" name="search" value="${param.search}">
+                    <h2><input type="text" name="search" value="${param.search}">
                         <button type="submit" class="btn btn-primary">Wyszukaj</button>
-                    </h3>
+                    </h2>
                 </div>
                 </form>
                 <div class="table-responsive table-responsive-data2">
@@ -53,7 +53,7 @@
                         </tr>
                         <c:forEach items="${productList}" var="p">
                             <tr class="tr-shadow">
-                                <td>${p.name}</td>
+                                <td><b><c:out value="${empty p.name ? p.name2 : p.name}" /></b><br>${p.brand}</td>
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.proteins}"/></td>
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.carbs}"/></td>
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.fat}"/></td>
