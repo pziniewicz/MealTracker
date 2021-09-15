@@ -7,6 +7,8 @@ import pl.zini.model.ProductFromApi;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class ProductServiceApi {
 
     public List<ProductFromApi> productSearch(String productName) throws IOException {
     String urlAddress = "https://pl.openfoodfacts.org/cgi/search.pl?search_terms="
-            + productName + "&search_simple=1&action=process&json=1";
+            + URLEncoder.encode(productName, StandardCharsets.UTF_8) + "&search_simple=1&action=process&json=1";
     URL url = new URL(urlAddress);
     ObjectMapper mapper = new ObjectMapper();
     JsonNode node = mapper.readValue(url, JsonNode.class);

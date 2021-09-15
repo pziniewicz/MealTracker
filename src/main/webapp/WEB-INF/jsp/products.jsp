@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="header.jsp"/>
 <jsp:include page="menu_right.jsp"/>
@@ -27,7 +28,7 @@
                 <!-- DATA TABLE -->
                 <form method="get">
                 <div class="alert alert-primary">
-                    <h3><input type="text" name="search">
+                    <h3><input type="text" name="search" value="${param.search}">
                         <button type="submit" class="btn btn-primary">Wyszukaj</button>
                     </h3>
                 </div>
@@ -53,10 +54,10 @@
                         <c:forEach items="${productList}" var="p">
                             <tr class="tr-shadow">
                                 <td>${p.name}</td>
-                                <td>${p.proteins}</td>
-                                <td>${p.carbs}</td>
-                                <td>${p.fat}</td>
-                                <td>${p.calories}</td>
+                                <td><fmt:formatNumber maxFractionDigits="2" value="${p.proteins}"/></td>
+                                <td><fmt:formatNumber maxFractionDigits="2" value="${p.carbs}"/></td>
+                                <td><fmt:formatNumber maxFractionDigits="2" value="${p.fat}"/></td>
+                                <td><fmt:formatNumber maxFractionDigits="2" value="${p.calories}"/></td>
                                 <td>10g</td>
                                 <td>
                                     <div class="table-data-feature">
