@@ -31,11 +31,11 @@ public class MainController {
         return "dashboard";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        System.out.println("Login");
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        System.out.println("Login");
+//        return "login";
+//    }
 
     @GetMapping("/register")
     public String register(Long id, Model model) {
@@ -45,7 +45,7 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String create(@Valid User user, BindingResult result) {
+    public String register(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "register";
         }
@@ -58,44 +58,10 @@ public class MainController {
         return "redirect:/login";
     }
 
-    @GetMapping("/meals")
-    public String meals() {
-        return "meals";
-    }
+//
+//    @GetMapping("/dashboard")
+//    public String dashboard() {
+//        return "dashboard";
+//    }
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
-    @GetMapping("/plans")
-    public String plans() {
-        return "plans";
-    }
-
-
-    @GetMapping("/user/register")
-    public String register() {
-        return "register";
-    }
-
-    @GetMapping("/users")
-    public String showusers() {
-        return "users";
-    }
-
-    @GetMapping(value = "/plans/new", produces = "text/html;charset=utf-8")
-    public String createPlan(Long id, Model model) {
-
-        return "newPlan";
-    }
-
-    @PostMapping("/plans/new")
-    public String createPlan(@Valid Plan plan, BindingResult result) {
-        if (result.hasErrors()) {
-            return "newPlan";
-        }
-
-        return "redirect:/dashboard";
-    }
 }

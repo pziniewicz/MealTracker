@@ -38,21 +38,17 @@ public class AppConfig implements WebMvcConfigurer {
         return jpaTransactionManager;
     }
 
-    @Bean(name="localeResolver")
+    @Bean(name = "localeResolver")
     public LocaleContextResolver getLocaleContextResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(new Locale("pl","PL"));
+        localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources");
-//    }
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login")
+                .setViewName("login");
     }
 
 

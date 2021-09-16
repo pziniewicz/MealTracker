@@ -16,6 +16,4 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/403").setViewName("403");
     }
 
-
-
 }

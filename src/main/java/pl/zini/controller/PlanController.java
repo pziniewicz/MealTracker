@@ -32,6 +32,14 @@ public class PlanController {
         this.productServiceApi = productServiceApi;
     }
 
+    @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
+    public String showAll(Model model, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
+        model.addAttribute("plans", plans);
+        return "plan/plans";
+    }
+
     @GetMapping(value = "/create", produces = "text/plain;charset=UTF-8")
     public String create(Long id, Model model) {
         Plan plan;
@@ -55,14 +63,6 @@ public class PlanController {
         return "redirect:/plan/";
     }
 
-    @RequestMapping(value = "/", produces = "text/plain;charset=UTF-8")
-    public String getAll(Model model, HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
-        model.addAttribute("plans", plans);
-        return "plan/plans";
-    }
-
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id) {
         Plan plan = planService.getById(Long.parseLong(id));
@@ -81,15 +81,6 @@ public class PlanController {
         plan.setIsActive(1);
         planService.save(plan);
         return "redirect:/plan/";
-    }
-
-    @RequestMapping(value = "/product", produces = "text/plain;charset=UTF-8")
-    public String products(@RequestParam(required = false) String search, Model model) throws IOException {
-        if (search != null) {
-            List<ProductFromApi> productList = productServiceApi.productSearch(search);
-            model.addAttribute("productList", productList);
-        }
-        return "products";
     }
 
 }

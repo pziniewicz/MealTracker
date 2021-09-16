@@ -4,9 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="header.jsp"/>
-<jsp:include page="menu_right.jsp"/>
-<jsp:include page="topsection.jsp"/>
+<jsp:include page="../components/header.jsp"/>
+<jsp:include page="../components/menu_right.jsp"/>
+<jsp:include page="../components/topsection.jsp"/>
 
 
 <section>
@@ -85,4 +85,4 @@
     </div>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../components/footer.jsp"/>

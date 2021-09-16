@@ -5,7 +5,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar2">
         <div class="logo">
-            <a href="">
+            <a href="/">
                 <img src="/images/logo.png" alt="Meal Tracker" />
             </a>
         </div>
@@ -27,19 +27,19 @@
                             <i class="fas fa-chart-bar"></i>Tablica</a>
                     </li>
                     <li>
-                        <a href="/meals">
+                        <a href="/meal">
                             <i class="fas fa-tasks"></i>Posilki</a>
                     </li>
+<%--                    <li>--%>
+<%--                        <a href="/new">--%>
+<%--                            <i class="fas fa-calendar-alt"></i>Kalendarz</a>--%>
+<%--                    </li>--%>
                     <li>
-                        <a href="/new">
-                            <i class="fas fa-calendar-alt"></i>Kalendarz</a>
-                    </li>
-                    <li>
-                        <a href="/plan/">
+                        <a href="/plan">
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>
-                        <a href="/plan/product">
+                        <a href="/product">
                             <i class="fas fa-shopping-basket"></i>Wyszukaj produkt</a>
                     </li>
                     <li></li>
