@@ -53,10 +53,10 @@ public class MainController {
         return "redirect:/user/";
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/login";
-    }
+//    @GetMapping("/logout")
+//    public String logout() {
+//        return "redirect:/login";
+//    }
 
 //
 //    @GetMapping("/dashboard")
