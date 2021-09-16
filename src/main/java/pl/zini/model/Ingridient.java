@@ -14,7 +14,9 @@ public class Ingridient {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+    private String brand;
     private Integer quantity;
+    private Integer calories;
     private Integer carbs;
     private Integer protein;
     private Integer fat;

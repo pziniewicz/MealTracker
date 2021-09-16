@@ -51,5 +51,12 @@ public class AppConfig implements WebMvcConfigurer {
                 .setViewName("login");
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/resources/**","/resources/static/**")
+                .addResourceLocations("/resources/", "/resources/static/");
+    }
+
 
 }
