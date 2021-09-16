@@ -1,19 +1,24 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <body class="animsition">
 <div class="page-wrapper">
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar2">
         <div class="logo">
-            <a href="#">
-                <img src="images/logo.png" alt="Meal Tracker" />
+            <a href="/">
+                <img src="/images/logo.png" alt="Meal Tracker" />
             </a>
         </div>
         <div class="menu-sidebar2__content js-scrollbar1">
             <div class="account2">
                 <div class="image img-cir img-120">
-                    <img src="images/icon/avatar-big-01.jpg" alt="John Doe" />
+                    <img src="#" alt="" />
                 </div>
-                <h4 class="name">john doe</h4>
-                <a href="#">Sign out</a>
+<%--                <h4 class="name">Pawel Ziniewicz</h4>--%>
+                <h4><center><security:authorize access="isAuthenticated()">
+                    <security:authentication property="principal.Username" />
+                </security:authorize></center></h4>
+                <a href="/logout">Wyloguj</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
@@ -22,19 +27,19 @@
                             <i class="fas fa-chart-bar"></i>Tablica</a>
                     </li>
                     <li>
-                        <a href="template.jsp">
-                            <i class="fas fa-tasks"></i>Pomiary</a>
+                        <a href="/meal">
+                            <i class="fas fa-tasks"></i>Posilki</a>
                     </li>
+<%--                    <li>--%>
+<%--                        <a href="/new">--%>
+<%--                            <i class="fas fa-calendar-alt"></i>Kalendarz</a>--%>
+<%--                    </li>--%>
                     <li>
-                        <a href="/new">
-                            <i class="fas fa-calendar-alt"></i>Kalendarz</a>
-                    </li>
-                    <li>
-                        <a href="/plans">
+                        <a href="/plan">
                             <i class="far fa-check-square"></i>Plany</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/product">
                             <i class="fas fa-shopping-basket"></i>Wyszukaj produkt</a>
                     </li>
                     <li></li>

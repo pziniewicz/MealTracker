@@ -20,6 +20,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.jdbcAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select email, password, enabled "
+                        + "from users "
+                        + "where email = ? limit 1;")
+                .authoritiesByUsernameQuery("SELECT u.email, r.role  FROM users u "
+                        + "Left JOIN user_role ur on u.id = ur.user_id "
+                        + "JOIN roles r on r.role_id = ur.role_id "
+                        + "WHERE u.email = ? limit 1;");
+    }
+
     @Bean
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
@@ -28,17 +43,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user").authenticated()
-                .anyRequest().permitAll()
-                .and().formLogin().loginPage("/login")
-                .and().logout().logoutSuccessUrl("/")
-                .permitAll();;
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 }

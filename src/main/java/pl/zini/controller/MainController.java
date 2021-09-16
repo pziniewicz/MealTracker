@@ -4,16 +4,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.zini.model.CurrentUser;
+import pl.zini.model.Plan;
 import pl.zini.model.User;
 import pl.zini.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -27,15 +28,14 @@ public class MainController {
 
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "dashboard";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-
+//    @GetMapping("/login")
+//    public String login() {
+//        System.out.println("Login");
+//        return "login";
+//    }
 
     @GetMapping("/register")
     public String register(Long id, Model model) {
@@ -45,7 +45,7 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String create(@Valid User user, BindingResult result) {
+    public String register(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "register";
         }
@@ -55,13 +55,13 @@ public class MainController {
 
     @GetMapping("/logout")
     public String logout() {
-        return "logout";
+        return "redirect:/login";
     }
 
-    @GetMapping("/admin")
-    @ResponseBody
-    public String admin(@AuthenticationPrincipal CurrentUser customUser) {
-        User entityUser = customUser.getUser();
-        return "this is user id " + entityUser.getId();
-    }
+//
+//    @GetMapping("/dashboard")
+//    public String dashboard() {
+//        return "dashboard";
+//    }
+
 }
