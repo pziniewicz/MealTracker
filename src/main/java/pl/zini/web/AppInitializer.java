@@ -1,4 +1,4 @@
-package pl.zini;
+package pl.zini.web;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import pl.zini.config.AppConfig;
