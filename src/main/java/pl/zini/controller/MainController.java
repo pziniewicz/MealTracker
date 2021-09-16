@@ -31,12 +31,6 @@ public class MainController {
         return "dashboard";
     }
 
-//    @GetMapping("/login")
-//    public String login() {
-//        System.out.println("Login");
-//        return "login";
-//    }
-
     @GetMapping("/register")
     public String register(Long id, Model model) {
         User user = new User();
@@ -52,16 +46,4 @@ public class MainController {
         userService.saveUser(user);
         return "redirect:/user/";
     }
-
-//    @GetMapping("/logout")
-//    public String logout() {
-//        return "redirect:/login";
-//    }
-
-//
-//    @GetMapping("/dashboard")
-//    public String dashboard() {
-//        return "dashboard";
-//    }
-
 }

@@ -19,15 +19,15 @@ public class Meal {
     @Column(name = "id", nullable = false)
     private Long id;
     private LocalDate date;
-    private LocalTime time;
 
     @ManyToOne
     private Plan plan;
 
-    @ManyToMany
+    @OneToMany
     private List<Ingridient> ingridients;
 
     @ManyToOne
     private MealName mealName;
+
 
 }

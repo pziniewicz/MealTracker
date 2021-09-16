@@ -3,6 +3,7 @@ package pl.zini.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -16,9 +17,14 @@ public class Ingridient {
     private String name;
     private String brand;
     private Integer quantity;
-    private Integer calories;
-    private Integer carbs;
-    private Integer protein;
-    private Integer fat;
+    private Number calories;
+    private Number carbs;
+    private Number protein;
+    private Number fat;
+
+    @ManyToOne
+    @JoinColumn(name = "meal_id")
+    private Meal meal;
+
 
 }

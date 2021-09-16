@@ -14,7 +14,6 @@
                 <div class="image img-cir img-120">
                     <img src="#" alt="" />
                 </div>
-<%--                <h4 class="name">Pawel Ziniewicz</h4>--%>
                 <h4><center><security:authorize access="isAuthenticated()">
                     <security:authentication property="principal.Username" />
                 </security:authorize></center></h4>
@@ -27,7 +26,7 @@
                             <i class="fas fa-chart-bar"></i>Tablica</a>
                     </li>
                     <li>
-                        <a href="/meal">
+                        <a href="/meal?date=<%= (java.time.LocalDate.now())%>">
                             <i class="fas fa-tasks"></i>Posilki</a>
                     </li>
 <%--                    <li>--%>

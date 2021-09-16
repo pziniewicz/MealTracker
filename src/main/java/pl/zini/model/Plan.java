@@ -34,6 +34,9 @@ public class Plan {
     @OneToMany(mappedBy = "plan")
     private List<Meal> meals = new ArrayList<>();
 
+    @ManyToMany()
+    private List<MealName> mealNames = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -53,17 +56,17 @@ public class Plan {
     }
 
     public void setCarbsQuantity(Double caloric) {
-        Double carbs = (((carbsPercent / 100) * caloric) / 4.15);
+        Double carbs = (((carbsPercent / 100.00) * caloric) / 4.15);
         this.carbsQuantity = carbs.intValue();
     }
 
     public void setProteinQuantity(Double caloric) {
-        Double protein = ((proteinPercent / 100) * caloric) / 5.65;
+        Double protein = ((proteinPercent / 100.00) * caloric) / 5.65;
         this.proteinQuantity = protein.intValue();
     }
 
     public void setFatQuantity(Double caloric) {
-        Double fat = ((fatPercent / 100) * caloric) / 9.45;
+        Double fat = ((fatPercent / 100.00) * caloric) / 9.45;
         this.fatQuantity = fat.intValue();
     }
 

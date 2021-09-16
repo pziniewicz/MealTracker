@@ -2,6 +2,7 @@ package pl.zini.service;
 
 import org.springframework.stereotype.Service;
 import pl.zini.model.Plan;
+import pl.zini.model.User;
 import pl.zini.repository.PlanRepository;
 
 import java.util.List;
@@ -34,6 +35,10 @@ public class PlanService {
     }
     public List<Plan> findAll() {
         return planRepository.findAll();
+    }
+
+    public Plan getByUserAndIsActive(User user, Integer isActive) {
+        return planRepository.getByUserAndIsActive(user, isActive);
     }
 
 }
