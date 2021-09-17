@@ -8,6 +8,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductFromApi {
 
+    private Long id;
     @JsonProperty("product_name_pl")
     private String name;
     @JsonProperty("product_name")
@@ -18,6 +19,14 @@ public class ProductFromApi {
     private Number carbs;
     private Number proteins;
     private Number fat;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -80,7 +80,7 @@
                             <th>Kcal</th>
                             <th>Gramatura</th>
                             <th>
-                                <a href="meal/create/${param.date}/${mealname.id}">
+                                <a href="ingredient/${param.date}/${mealname.id}/${activePlan.id}">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                      <i class="zmdi zmdi-plus"></i></button></a>
                             </th>

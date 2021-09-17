@@ -8,16 +8,12 @@ import pl.zini.model.Meal;
 import pl.zini.model.MealName;
 import pl.zini.model.Plan;
 import pl.zini.model.User;
-import pl.zini.service.MealNameService;
-import pl.zini.service.MealService;
-import pl.zini.service.PlanService;
-import pl.zini.service.UserServiceImpl;
+import pl.zini.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 @Configuration
@@ -29,18 +25,21 @@ public class MealController {
     private final PlanService planService;
     private final UserServiceImpl userService;
     private final MealNameService mealNameService;
+    private final IngredientService ingredientService;
 
-    public MealController(MealService mealService, HttpServletRequest request, PlanService planService, UserServiceImpl userService, MealNameService mealNameService) {
+    public MealController(MealService mealService, HttpServletRequest request, PlanService planService, UserServiceImpl userService, MealNameService mealNameService, IngredientService ingredientService) {
         this.mealService = mealService;
         this.request = request;
         this.planService = planService;
         this.userService = userService;
         this.mealNameService = mealNameService;
+        this.ingredientService = ingredientService;
     }
 
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(String date, Model model) {
         Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
+        model.addAttribute("activePlan", activePlan);
         List<MealName> mealNames = activePlan.getMealNames();
         model.addAttribute("mealNames", mealNames);
         for (MealName mealName : mealNames) {
@@ -52,6 +51,8 @@ public class MealController {
                 mealService.save(meal);
             }
         }
+
+//        List<>
 //        List<Meal> mealList = mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealNames);
         return "meal/meals";
     }
@@ -80,6 +81,13 @@ public class MealController {
         return "redirect:/plan/";
     }
 
+    ///add/8714100666838/2021-09-17/1/1
+    @GetMapping(value = "/add/{productId}/{date}/{mealId}/{planId}", produces = "text/plain;charset=UTF-8")
+    public String add(@PathVariable Integer productId, @PathVariable String date, @PathVariable Long mealId,
+                      @PathVariable Long planId, Model model) {
+
+        return "redirect:/meal?date=" + date;
+    }
 
     public User getSessionUser() {
         Principal principal = request.getUserPrincipal();

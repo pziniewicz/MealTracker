@@ -21,6 +21,7 @@ public class Ingredient {
     private Number carbs;
     private Number protein;
     private Number fat;
+    private Long productId;
 
     @ManyToOne
     @JoinColumn(name = "meal_id")
