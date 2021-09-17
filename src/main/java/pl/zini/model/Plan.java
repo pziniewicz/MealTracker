@@ -85,4 +85,12 @@ public class Plan {
     public int hashCode() {
         return Objects.hash(id, name, height, weight, gender, age, caloricDemand, carbsPercent, proteinPercent, fatPercent, carbsQuantity, proteinQuantity, fatQuantity, isActive, mealNames, user);
     }
+
+    @Override
+    public String toString() {
+        return "Plan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

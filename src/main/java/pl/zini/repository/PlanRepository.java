@@ -14,6 +14,7 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
 
     List<Plan> findByUserId(Long id);
 
+    Plan getById(Long id);
     Plan getByUserAndIsActive(User user, Integer isActive);
 
 }

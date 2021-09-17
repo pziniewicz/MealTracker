@@ -51,7 +51,7 @@ public class PlanController {
         } else {
             plan = new Plan();
         }
-        List<MealName> mealNames = mealNames=mealNameService.findAll();
+        List<MealName> mealNames = mealNameService.findAll();
         model.addAttribute("mealNames", mealNames);
         model.addAttribute(plan);
         return "plan/newPlan";

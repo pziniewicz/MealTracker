@@ -27,5 +27,12 @@ public class Meal {
     @ManyToOne
     private MealName mealName;
 
-
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "id=" + id +
+                ", date=" + date +
+                ", mealName=" + mealName +
+                '}';
+    }
 }
