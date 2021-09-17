@@ -52,7 +52,7 @@ public class MealController {
                 mealService.save(meal);
             }
         }
-        List<Meal> mealList = mealService.getByDateAndPlanAndMealName()
+        List<Meal> mealList = mealService.getByDateAndPlanAndMealName();
         return "meal/meals";
     }
 
