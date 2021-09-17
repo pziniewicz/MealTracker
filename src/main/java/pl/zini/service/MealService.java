@@ -1,10 +1,7 @@
 package pl.zini.service;
 
 import org.springframework.stereotype.Service;
-import pl.zini.model.Meal;
-import pl.zini.model.MealName;
-import pl.zini.model.Plan;
-import pl.zini.model.User;
+import pl.zini.model.*;
 import pl.zini.repository.MealRepository;
 
 import java.awt.print.Book;
@@ -20,9 +17,9 @@ public class MealService {
         this.mealRepository = mealRepository;
     }
 
-//    public List<Meal> getMealsForDay(LocalDate date, Integer isActive, User user) {
-//        return mealRepository.getAllByDateAndPlanIsActiveAndUser(date,isActive,user);
-//    }
+    public Meal getById(Long id) {
+        return mealRepository.getById(id);
+    }
 
     public Meal getByDateAndPlanAndMealName(LocalDate date, Plan plan, MealName mealName) {
         return mealRepository.getByDateAndPlanAndMealName(date, plan, mealName);
@@ -32,4 +29,15 @@ public class MealService {
         mealRepository.save(meal);
     }
 
+    public List<Meal> getByDateAndPlan(LocalDate date, Long id) {
+        return mealRepository.getByDateAndPlan(date, id);
+    }
+
+    public void delete(Meal meal) {
+        mealRepository.delete(meal);
+    }
+
+    public void deleteMealsByMealNameAndPlan(Long mealNameId, Long planId) {
+        mealRepository.deleteMealsByMealNameAndPlan(mealNameId, planId);
+    }
 }

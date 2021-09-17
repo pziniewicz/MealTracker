@@ -1,22 +1,19 @@
 package pl.zini.controller;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.zini.model.Meal;
-import pl.zini.model.MealName;
-import pl.zini.model.Plan;
-import pl.zini.model.User;
-import pl.zini.service.MealNameService;
-import pl.zini.service.MealService;
-import pl.zini.service.PlanService;
-import pl.zini.service.UserServiceImpl;
+import pl.zini.model.*;
+import pl.zini.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,18 +26,22 @@ public class MealController {
     private final PlanService planService;
     private final UserServiceImpl userService;
     private final MealNameService mealNameService;
+    private final IngredientService ingredientService;
 
-    public MealController(MealService mealService, HttpServletRequest request, PlanService planService, UserServiceImpl userService, MealNameService mealNameService) {
+    public MealController(MealService mealService, HttpServletRequest request, PlanService planService, UserServiceImpl userService, MealNameService mealNameService, IngredientService ingredientService) {
         this.mealService = mealService;
         this.request = request;
         this.planService = planService;
         this.userService = userService;
         this.mealNameService = mealNameService;
+        this.ingredientService = ingredientService;
     }
 
+    @Transactional
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(String date, Model model) {
         Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
+        model.addAttribute("activePlan", activePlan);
         List<MealName> mealNames = activePlan.getMealNames();
         model.addAttribute("mealNames", mealNames);
         for (MealName mealName : mealNames) {
@@ -52,7 +53,10 @@ public class MealController {
                 mealService.save(meal);
             }
         }
-//        List<Meal> mealList = mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealNames);
+
+        List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
+        System.out.println(meals);
+        model.addAttribute("meals", meals);
         return "meal/meals";
     }
 
@@ -80,6 +84,35 @@ public class MealController {
         return "redirect:/plan/";
     }
 
+    ///add/http://localhost:8080/meal/add/1/Hochland%20Almette%20Soft%20Cheese%20150G/%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Almette,Hochland/232/6.2/6.7/20/5902899101637
+    @GetMapping(value = "/add/{date}/{mealId}/{name}/{brand}/{calories}/{carbs}/{protein}/{fat}/{productId}",
+            produces = "text/plain;charset=UTF-8")
+    public String add(@PathVariable String date,
+                      @PathVariable Long mealId,
+                      @PathVariable String name,
+                      @PathVariable String brand,
+                      @PathVariable BigDecimal calories,
+                      @PathVariable BigDecimal carbs,
+                      @PathVariable BigDecimal protein,
+                      @PathVariable BigDecimal fat,
+                      @PathVariable Long productId) {
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name.trim());
+        ingredient.setBrand(brand.trim());
+        ingredient.setCalories(calories);
+        ingredient.setCarbs(carbs);
+        ingredient.setProtein(protein);
+        ingredient.setFat(fat);
+        ingredient.setProductId(productId);
+        ingredientService.save(ingredient);
+        Meal meal = mealService.getById(mealId);
+        List<Ingredient> ingredients = meal.getIngredients();
+        ingredients.add(ingredient);
+        mealService.save(meal);
+
+        return "redirect:/meal?date=" + date;
+    }
 
     public User getSessionUser() {
         Principal principal = request.getUserPrincipal();

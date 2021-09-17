@@ -50,13 +50,13 @@
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.carbs}"/></td>
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.fat}"/></td>
                                 <td><fmt:formatNumber maxFractionDigits="2" value="${p.calories}"/></td>
-                                <td>10g</td>
                                 <td>
                                     <div class="table-data-feature">
                                             <%--                                    <a href="/plan/create?id=${p.id}">--%>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <a href="/meal/add/${date}/${mealId}/${empty p.name ? p.name2 : p.name}/
+                                        ${p.brand}/${p.calories}/${p.carbs}/${p.proteins}/${p.fat}/${p.id}"> <button class="item" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
-                                        </button>
+                                        </button></a>
                                         </a>
                                             <%--                                    <a href="/plan/delete/${p.id}">--%>
                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
