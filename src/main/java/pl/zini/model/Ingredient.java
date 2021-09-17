@@ -24,7 +24,7 @@ public class Ingredient {
     private BigDecimal fat;
     private Long productId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "meal_id")
     private Meal meal;
 
