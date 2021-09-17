@@ -4,18 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.zini.model.MealName;
 import pl.zini.model.Plan;
-import pl.zini.model.ProductFromApi;
+import pl.zini.model.User;
+import pl.zini.service.MealNameService;
 import pl.zini.service.PlanService;
 import pl.zini.service.ProductServiceApi;
 import pl.zini.service.UserServiceImpl;
 
-import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.security.Principal;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,17 +25,20 @@ public class PlanController {
     private final PlanService planService;
     private final UserServiceImpl userService;
     private final ProductServiceApi productServiceApi;
+    private final HttpServletRequest request;
+    private final MealNameService mealNameService;
 
-    public PlanController(PlanService planService, UserServiceImpl userService, ProductServiceApi productServiceApi) {
+    public PlanController(PlanService planService, UserServiceImpl userService, ProductServiceApi productServiceApi, HttpServletRequest request, MealNameService mealNameService) {
         this.planService = planService;
         this.userService = userService;
         this.productServiceApi = productServiceApi;
+        this.request = request;
+        this.mealNameService = mealNameService;
     }
 
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
-    public String showAll(Model model, HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
+    public String showAll(Model model) {
+        List<Plan> plans = planService.findByUserId(getSessionUser().getId());
         model.addAttribute("plans", plans);
         return "plan/plans";
     }
@@ -48,17 +51,18 @@ public class PlanController {
         } else {
             plan = new Plan();
         }
+        List<MealName> mealNames = mealNameService.findAll();
+        model.addAttribute("mealNames", mealNames);
         model.addAttribute(plan);
         return "plan/newPlan";
     }
 
     @PostMapping(value = "/create", produces = "text/plain;charset=UTF-8")
-    public String create(@Valid Plan plan, BindingResult result, HttpServletRequest request) {
+    public String create(@Valid Plan plan, BindingResult result) {
         if (result.hasErrors()) {
             return "plan/newPlan";
         }
-        Principal principal = request.getUserPrincipal();
-        plan.setUser(userService.findByEmail(principal.getName()));
+        plan.setUser(getSessionUser());
         planService.save(plan);
         return "redirect:/plan/";
     }
@@ -71,9 +75,8 @@ public class PlanController {
     }
 
     @GetMapping("/setActive/{id}")
-    public String setActive(@PathVariable String id, HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        List<Plan> plans = planService.findByUserId((userService.findByEmail(principal.getName())).getId());
+    public String setActive(@PathVariable String id) {
+        List<Plan> plans = planService.findByUserId(getSessionUser().getId());
         Plan plan = planService.getById(Long.parseLong(id));
         for (Plan plan1 : plans) {
             plan1.setIsActive(0);
@@ -81,6 +84,11 @@ public class PlanController {
         plan.setIsActive(1);
         planService.save(plan);
         return "redirect:/plan/";
+    }
+
+    public User getSessionUser() {
+        Principal principal = request.getUserPrincipal();
+        return userService.findByEmail(principal.getName());
     }
 
 }

@@ -31,8 +31,14 @@ public class Plan {
     private Integer fatQuantity;
     private Integer isActive;
 
-    @OneToMany(mappedBy = "plan")
-    private List<Meal> meals = new ArrayList<>();
+    @OneToMany
+    private List<Meal> meals;
+
+    @ManyToMany
+    @JoinTable(name = "plans_meal_names",
+            joinColumns = @JoinColumn(name = "plan_id"),
+            inverseJoinColumns = @JoinColumn(name = "meal_names_id"))
+    private List<MealName> mealNames = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -53,17 +59,17 @@ public class Plan {
     }
 
     public void setCarbsQuantity(Double caloric) {
-        Double carbs = (((carbsPercent / 100) * caloric) / 4.15);
+        Double carbs = (((carbsPercent / 100.00) * caloric) / 4.15);
         this.carbsQuantity = carbs.intValue();
     }
 
     public void setProteinQuantity(Double caloric) {
-        Double protein = ((proteinPercent / 100) * caloric) / 5.65;
+        Double protein = ((proteinPercent / 100.00) * caloric) / 5.65;
         this.proteinQuantity = protein.intValue();
     }
 
     public void setFatQuantity(Double caloric) {
-        Double fat = ((fatPercent / 100) * caloric) / 9.45;
+        Double fat = ((fatPercent / 100.00) * caloric) / 9.45;
         this.fatQuantity = fat.intValue();
     }
 
@@ -72,11 +78,19 @@ public class Plan {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plan plan = (Plan) o;
-        return Double.compare(plan.height, height) == 0 && Objects.equals(id, plan.id) && Objects.equals(name, plan.name) && Objects.equals(weight, plan.weight) && Objects.equals(gender, plan.gender) && Objects.equals(age, plan.age) && Objects.equals(caloricDemand, plan.caloricDemand) && Objects.equals(carbsPercent, plan.carbsPercent) && Objects.equals(proteinPercent, plan.proteinPercent) && Objects.equals(fatPercent, plan.fatPercent) && Objects.equals(carbsQuantity, plan.carbsQuantity) && Objects.equals(proteinQuantity, plan.proteinQuantity) && Objects.equals(fatQuantity, plan.fatQuantity) && Objects.equals(isActive, plan.isActive) && Objects.equals(meals, plan.meals) && Objects.equals(user, plan.user);
+        return Double.compare(plan.height, height) == 0 && Objects.equals(id, plan.id) && Objects.equals(name, plan.name) && Objects.equals(weight, plan.weight) && Objects.equals(gender, plan.gender) && Objects.equals(age, plan.age) && Objects.equals(caloricDemand, plan.caloricDemand) && Objects.equals(carbsPercent, plan.carbsPercent) && Objects.equals(proteinPercent, plan.proteinPercent) && Objects.equals(fatPercent, plan.fatPercent) && Objects.equals(carbsQuantity, plan.carbsQuantity) && Objects.equals(proteinQuantity, plan.proteinQuantity) && Objects.equals(fatQuantity, plan.fatQuantity) && Objects.equals(isActive, plan.isActive) && Objects.equals(mealNames, plan.mealNames) && Objects.equals(user, plan.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, height, weight, gender, age, caloricDemand, carbsPercent, proteinPercent, fatPercent, carbsQuantity, proteinQuantity, fatQuantity, isActive, meals, user);
+        return Objects.hash(id, name, height, weight, gender, age, caloricDemand, carbsPercent, proteinPercent, fatPercent, carbsQuantity, proteinQuantity, fatQuantity, isActive, mealNames, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Plan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

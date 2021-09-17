@@ -105,33 +105,19 @@
 
                                 </div>
                             </div>
-                                <%--    <div class="row form-group">--%>
-                                <%--    <div class="col col-md-2">--%>
-                                <%--    <label for="text-input" class=" form-control-label">Makra %</label>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col-12 col-md-3">--%>
-                                <%--    <input type="text" id="text-input" name="text-input" placeholder="Text"--%>
-                                <%--    class="form-control">--%>
-                                <%--    <small class="form-text text-muted">Białka %</small>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col col-md-0">--%>
-                                <%--    <label for="text-input" class=" form-control-label"></label>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col-12 col-md-3">--%>
-                                <%--    <input type="text" id="text-input" name="text-input" placeholder="Text"--%>
-                                <%--    class="form-control">--%>
-                                <%--    <small class="form-text text-muted">Węglowodany %</small>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col col-md-0">--%>
-                                <%--    <label for="text-input" class=" form-control-label"></label>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col-12 col-md-3">--%>
-                                <%--    <input type="text" id="text-input" name="text-input" placeholder="Text"--%>
-                                <%--    class="form-control">--%>
-                                <%--    <small class="form-text text-muted">Tłuszcze %</small>--%>
-                                <%--    </div>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="row form-group"></div>--%>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Wybierz posiłki</label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check">
+                                            <div class="custom-checkbox ">
+                                                <form:checkboxes path="mealNames"
+                                                                 items="${mealNames}" itemLabel="name" itemValue="id" delimiter="<br/>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             <div class="row form-group">
                                 <div class="col col-md-2">

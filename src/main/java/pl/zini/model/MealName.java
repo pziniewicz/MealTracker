@@ -3,6 +3,8 @@ package pl.zini.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,6 +16,8 @@ public class MealName {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
-//    private Long order;
+
+    @ManyToMany(mappedBy = "mealNames")
+    private List<Plan> plans = new ArrayList<>();
 
 }

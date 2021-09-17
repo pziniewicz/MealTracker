@@ -47,7 +47,8 @@
     <span>
     Waga: ${p.weight} Wzrost: ${p.height}<br>
     Wiek: ${p.age} Płeć: ${p.gender}<br>
-    Makra: <br>
+    Kalorie: ${p.caloricDemand} <br>
+        Makra: <br>
     B: ${p.proteinQuantity} W: ${p.carbsQuantity} T: ${p.fatQuantity}
     </span>
                             </td>
