@@ -65,56 +65,51 @@
 
                 <!-- DATA TABLE -->
                 <c:forEach items="${meals}" var="meal">
-                <div class="alert alert-primary"><b>${meal.mealName.name}</b></div>
-                <div class="table-responsive table-responsive-data2">
-                    <table class="table table-data2">
-                        <tbody>
-                        <%--                        <thead>--%>
-                        <tr>
-                            <th>
-                                <center>Produkt</center>
-                            </th>
-                            <th>Białka</th>
-                            <th>Węglowodany</th>
-                            <th>Tłuszcze</th>
-                            <th>Kcal</th>
-                            <th>Gramatura</th>
-                            <th>
-                                <a href="ingredient/${param.date}/${meal.id}/">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                     <i class="zmdi zmdi-plus"></i></button></a>
-                            </th>
-                        </tr>
-                        <%--                        </thead>--%>
-                        <%--                        <tbody>--%>
-                        <%--                    <c:forEach items="${plans}" var="p">--%>
-                        <tr class="tr-shadow">
-                            <td>nazwa skladnika</td>
-                            <td>211</td>
-                            <td>44g</td>
-                            <td>5g</td>
-                            <td>4g</td>
-                            <td>10g</td>
-                            <td>
-                                <div class="table-data-feature">
-                                    <%--                                    <a href="/plan/create?id=${p.id}">--%>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button>
+                    <div class="alert alert-primary"><b>${meal.mealName.name}</b></div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <tr>
+                                <th>Produkt</th>
+                                <th>Białka</th>
+                                <th>Węglowodany</th>
+                                <th>Tłuszcze</th>
+                                <th>Kcal</th>
+                                <th>Gramatura</th>
+                                <th>
+                                    <a href="ingredient/${param.date}/${meal.id}/">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i></button>
                                     </a>
-                                    <%--                                    <a href="/plan/delete/${p.id}">--%>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                    <br>
-                </div>
+                                </th>
+                            </tr>
+                            <c:forEach items="${meal.ingredients}" var="ingredients">
+                                <tr class="tr-shadow">
+                                    <td>${ingredients.name}</td>
+                                    <td>${ingredients.protein}</td>
+                                    <td>${ingredients.carbs}</td>
+                                    <td>${ingredients.fat}</td>
+                                    <td>${ingredients.calories}</td>
+                                    <td>10g</td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top"
+                                                    title="Edit">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </button>
+                                            </a>
+                                            <button class="item" data-toggle="tooltip" data-placement="top"
+                                                    title="Delete">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <br>
+                    </div>
                 </c:forEach>
                 <br>
                 <!-- END DATA TABLE -->

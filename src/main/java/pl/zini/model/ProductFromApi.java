@@ -43,7 +43,7 @@ public class ProductFromApi {
     }
 
     public void setName2(String name2) {
-        if (name2 != null) {
+        if (name2.equals("")) {
             this.name2 = name2;
         } else {
             this.name2 = "Brak nazwy produktu";
@@ -55,7 +55,7 @@ public class ProductFromApi {
     }
 
     public void setBrand(String brand) {
-        if (brand != null) {
+        if (brand.equals("")) {
             this.brand = brand;
         } else {
             this.brand = "Brak producenta";
