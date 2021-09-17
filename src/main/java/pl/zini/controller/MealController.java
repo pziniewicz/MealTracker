@@ -13,9 +13,7 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @RequestMapping("/meal")
@@ -84,7 +82,6 @@ public class MealController {
         return "redirect:/plan/";
     }
 
-    ///add/http://localhost:8080/meal/add/1/Hochland%20Almette%20Soft%20Cheese%20150G/%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Almette,Hochland/232/6.2/6.7/20/5902899101637
     @GetMapping(value = "/add/{date}/{mealId}/{name}/{brand}/{calories}/{carbs}/{protein}/{fat}/{productId}",
             produces = "text/plain;charset=UTF-8")
     public String add(@PathVariable String date,
@@ -118,4 +115,16 @@ public class MealController {
         Principal principal = request.getUserPrincipal();
         return userService.findByEmail(principal.getName());
     }
+
+    public Map<String, Integer> getCaloryAndMakrosData(LocalDate date) {
+        Map<String,Integer> data = new HashMap<>() ;
+        Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
+        data.put("calPercent", activePlan.getCaloricDemand());
+        data.put("proteinDemand", activePlan.getProteinQuantity());
+        data.put("carbsDemand", activePlan.getCarbsQuantity());
+        data.put("fatDemand", activePlan.getFatQuantity());
+
+        return data;
+    }
+
 }

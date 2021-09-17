@@ -6,10 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.zini.model.Ingredient;
 import pl.zini.model.ProductFromApi;
+import pl.zini.service.IngredientService;
 import pl.zini.service.ProductServiceApi;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -17,12 +20,14 @@ import java.util.List;
 public class IngredientController {
 
     private final ProductServiceApi productServiceApi;
+    private final IngredientService ingredientService;
 
-    public IngredientController(ProductServiceApi productServiceApi) {
+    public IngredientController(ProductServiceApi productServiceApi, IngredientService ingredientService) {
         this.productServiceApi = productServiceApi;
+        this.ingredientService = ingredientService;
     }
 
-    @RequestMapping(value = "/{date}/{mealId}", produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/search/{date}/{mealId}", produces = "text/plain;charset=UTF-8")
     @Transactional
     public String products(@PathVariable String date, @PathVariable Long mealId, @RequestParam(required = false) String search, Model model) throws IOException {
         model.addAttribute(date);
@@ -34,4 +39,20 @@ public class IngredientController {
         }
         return "ingredient/ingredient";
     }
+
+    @RequestMapping(value = "/edit", produces = "text/plain;charset=UTF-8")
+    @Transactional
+    public String edit(@RequestParam Integer quantity, @RequestParam Long ingredientId, @RequestParam String date) throws IOException {
+        ingredientService.edit(ingredientId, quantity);
+        return "redirect:/meal?date=" + date;
+    }
+
+    @RequestMapping(value = "/delete/{ingredientId}/{date}", produces = "text/plain;charset=UTF-8")
+    @Transactional
+    public String delete(@PathVariable Long ingredientId, @PathVariable String date) throws IOException {
+        Ingredient ingredient = ingredientService.getById(ingredientId);
+        ingredientService.delete(ingredient);
+        return "redirect:/meal?date=" + date;
+    }
+
 }

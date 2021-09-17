@@ -15,7 +15,6 @@
         <div class="section__content section__content--p10">
             <!-- TASK PROGRESS-->
             <div class="task-progress">
-                <%--    <h3 class="title-3">task progress</h3>--%>
                 <div class="au-skill-container">
                     <h3 class="title-5 m-b-35">
                         <form action="" method="get">
@@ -23,37 +22,33 @@
                     </h3>
                     <div class="au-progress">
                         <span class="au-progress__title">Kalorie</span>
-                        <div class="au-progress__bar">
-                            <div class="au-progress__inner js-progressbar-simple" role="progressbar"
-                                 data-transitiongoal="90">
-                                <span class="au-progress__value js-value"></span>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
+                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
                             </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Białko</span>
-                        <div class="au-progress__bar">
-                            <div class="au-progress__inner js-progressbar-simple" role="progressbar"
-                                 data-transitiongoal="85">
-                                <span class="au-progress__value js-value"></span>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
+                                 aria-valuemin="0" aria-valuemax="100">50%
                             </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Węglowodany</span>
-                        <div class="au-progress__bar">
-                            <div class="au-progress__inner js-progressbar-simple" role="progressbar"
-                                 data-transitiongoal="95">
-                                <span class="au-progress__value js-value"></span>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%
                             </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Tłuszcze</span>
-                        <div class="au-progress__bar">
-                            <div class="au-progress__inner js-progressbar-simple" role="progressbar"
-                                 data-transitiongoal="95">
-                                <span class="au-progress__value js-value"></span>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="90"
+                                 aria-valuemin="0" aria-valuemax="100">90%
                             </div>
                         </div>
                     </div>
@@ -62,61 +57,65 @@
             <!-- END TASK PROGRESS-->
             <div class="container-fluid">
 
-
                 <!-- DATA TABLE -->
                 <c:forEach items="${meals}" var="meal">
-                    <div class="alert alert-primary"><b>${meal.mealName.name}</b></div>
-                    <div class="table-responsive table-responsive-data2">
-                        <table class="table table-data2">
-                            <tr>
-                                <th>Produkt</th>
-                                <th>Białka</th>
-                                <th>Węglowodany</th>
-                                <th>Tłuszcze</th>
-                                <th>Kcal</th>
-                                <th>Gramatura</th>
-                                <th>
-                                    <a href="ingredient/${param.date}/${meal.id}/">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                            <i class="zmdi zmdi-plus"></i></button>
-                                    </a>
-                                </th>
-                            </tr>
-                            <c:forEach items="${meal.ingredients}" var="ingredients">
-                                <tr class="tr-shadow">
-                                    <td>${ingredients.name}</td>
-                                    <td>${ingredients.protein}</td>
-                                    <td>${ingredients.carbs}</td>
-                                    <td>${ingredients.fat}</td>
-                                    <td>${ingredients.calories}</td>
-                                    <td>10g</td>
-                                    <td>
-                                        <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                    title="Edit">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </button>
-                                            </a>
-                                            <button class="item" data-toggle="tooltip" data-placement="top"
-                                                    title="Delete">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <br>
-                    </div>
+                <div class="alert alert-primary"><b>${meal.mealName.name}</b></div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <tr>
+                            <th>Produkt</th>
+                            <th>Białka</th>
+                            <th>Węglowodany</th>
+                            <th>Tłuszcze</th>
+                            <th>Kcal</th>
+                            <th>Gramatura</th>
+                            <th>
+                                <a href="ingredient/search/${param.date}/${meal.id}/">
+                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i></button>
+                                </a>
+                            </th>
+                        </tr>
+                        <c:forEach items="${meal.ingredients}" var="ingredient">
+                        <tr class="tr-shadow">
+                            <td>${ingredient.name}</td>
+                            <td>${ingredient.protein}</td>
+                            <td>${ingredient.carbs}</td>
+                            <td>${ingredient.fat}</td>
+                            <td>${ingredient.calories}</td>
+                            <form method="get" action="/ingredient/edit">
+                                <td><input type="text" name="quantity" value="${ingredient.quantity}"></td>
+                                <input type="hidden" name="id" value="${ingredient.id}">
+                                <input type="hidden" name="date" value="${param.date}">
+
+                                <td>
+                                    <div class="table-data-feature">
+                                            <%--                                        <a href="/ingredient/edit/${ingredient.id}">--%>
+                                        <button class="item" type="submit" data-toggle="tooltip"
+                                                data-placement="top"
+                                                title="Edytuj gramaturę"><i class="zmdi zmdi-edit"></i>
+                                        </button>
+                            </form>
+                            <a href="/ingredient/delete/${ingredient.id}/${param.date}">
+                                <button class="item" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Usuń produkt">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </a>
+                </div>
+                </td>
+                </tr>
                 </c:forEach>
+                </tbody>
+                </table>
                 <br>
-                <!-- END DATA TABLE -->
-
-
             </div>
+            </c:forEach>
+            <br>
+            <!-- END DATA TABLE -->
         </div>
+    </div>
     </div>
 </section>
 
