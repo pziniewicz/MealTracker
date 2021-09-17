@@ -1,21 +1,19 @@
 package pl.zini.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.zini.model.Meal;
 import pl.zini.model.MealName;
 import pl.zini.model.Plan;
 import pl.zini.model.User;
-import pl.zini.service.MealNameService;
-import pl.zini.service.PlanService;
-import pl.zini.service.ProductServiceApi;
-import pl.zini.service.UserServiceImpl;
+import pl.zini.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,13 +25,16 @@ public class PlanController {
     private final ProductServiceApi productServiceApi;
     private final HttpServletRequest request;
     private final MealNameService mealNameService;
+    private final MealService mealService;
 
-    public PlanController(PlanService planService, UserServiceImpl userService, ProductServiceApi productServiceApi, HttpServletRequest request, MealNameService mealNameService) {
+    public PlanController(PlanService planService, UserServiceImpl userService, ProductServiceApi productServiceApi, HttpServletRequest request, MealNameService mealNameService, MealService mealService) {
         this.planService = planService;
         this.userService = userService;
         this.productServiceApi = productServiceApi;
         this.request = request;
         this.mealNameService = mealNameService;
+
+        this.mealService = mealService;
     }
 
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
@@ -43,11 +44,23 @@ public class PlanController {
         return "plan/plans";
     }
 
+    @Transactional
     @GetMapping(value = "/create", produces = "text/plain;charset=UTF-8")
     public String create(Long id, Model model) {
         Plan plan;
         if (id != null) {
             plan = planService.getById(id);
+            for (MealName mealName : mealNameService.findAll()) {
+                boolean flag = false;
+                for (MealName mealNamePlan : plan.getMealNames()) {
+                    if (mealNamePlan.getName().equals(mealName.getName())) {
+                        flag = true;
+                    }
+                }
+                if (flag = false) {
+                    mealService.deleteMealsByMealNameAndPlan(mealName.getId(), plan.getId());
+                }
+            }
         } else {
             plan = new Plan();
         }

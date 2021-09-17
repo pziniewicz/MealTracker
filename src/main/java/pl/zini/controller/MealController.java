@@ -1,19 +1,20 @@
 package pl.zini.controller;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.zini.model.Meal;
-import pl.zini.model.MealName;
-import pl.zini.model.Plan;
-import pl.zini.model.User;
+import pl.zini.model.*;
 import pl.zini.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Configuration
@@ -36,6 +37,7 @@ public class MealController {
         this.ingredientService = ingredientService;
     }
 
+    @Transactional
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(String date, Model model) {
         Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
@@ -52,8 +54,9 @@ public class MealController {
             }
         }
 
-//        List<>
-//        List<Meal> mealList = mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealNames);
+        List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
+        System.out.println(meals);
+        model.addAttribute("meals", meals);
         return "meal/meals";
     }
 
@@ -81,10 +84,32 @@ public class MealController {
         return "redirect:/plan/";
     }
 
-    ///add/8714100666838/2021-09-17/1/1
-    @GetMapping(value = "/add/{productId}/{date}/{mealId}/{planId}", produces = "text/plain;charset=UTF-8")
-    public String add(@PathVariable Integer productId, @PathVariable String date, @PathVariable Long mealId,
-                      @PathVariable Long planId, Model model) {
+    ///add/http://localhost:8080/meal/add/1/Hochland%20Almette%20Soft%20Cheese%20150G/%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Almette,Hochland/232/6.2/6.7/20/5902899101637
+    @GetMapping(value = "/add/{date}/{mealId}/{name}/{brand}/{calories}/{carbs}/{protein}/{fat}/{productId}",
+            produces = "text/plain;charset=UTF-8")
+    public String add(@PathVariable String date,
+                      @PathVariable Long mealId,
+                      @PathVariable String name,
+                      @PathVariable String brand,
+                      @PathVariable BigDecimal calories,
+                      @PathVariable BigDecimal carbs,
+                      @PathVariable BigDecimal protein,
+                      @PathVariable BigDecimal fat,
+                      @PathVariable Long productId) {
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name.trim());
+        ingredient.setBrand(brand.trim());
+        ingredient.setCalories(calories);
+        ingredient.setCarbs(carbs);
+        ingredient.setProtein(protein);
+        ingredient.setFat(fat);
+        ingredient.setProductId(productId);
+        ingredientService.save(ingredient);
+        Meal meal = mealService.getById(mealId);
+        List<Ingredient> ingredients = meal.getIngredients();
+        ingredients.add(ingredient);
+        mealService.save(meal);
 
         return "redirect:/meal?date=" + date;
     }

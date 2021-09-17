@@ -53,7 +53,8 @@
                                 <td>
                                     <div class="table-data-feature">
                                             <%--                                    <a href="/plan/create?id=${p.id}">--%>
-                                        <a href="/meal/add/${p.id}/${date}/${mealId}/${planId}"> <button class="item" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <a href="/meal/add/${date}/${mealId}/${empty p.name ? p.name2 : p.name}/
+                                        ${p.brand}/${p.calories}/${p.carbs}/${p.proteins}/${p.fat}/${p.id}"> <button class="item" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button></a>
                                         </a>

@@ -22,12 +22,11 @@ public class IngredientController {
         this.productServiceApi = productServiceApi;
     }
 
-    @RequestMapping(value = "/{date}/{mealId}/{planId}", produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/{date}/{mealId}", produces = "text/plain;charset=UTF-8")
     @Transactional
-    public String products(@PathVariable String date, @PathVariable Long mealId, @PathVariable Long planId, @RequestParam(required = false) String search, Model model) throws IOException {
+    public String products(@PathVariable String date, @PathVariable Long mealId, @RequestParam(required = false) String search, Model model) throws IOException {
         model.addAttribute(date);
         model.addAttribute(mealId);
-        model.addAttribute(planId);
 
         if (search != null) {
             List<ProductFromApi> productList = productServiceApi.productSearch(search);

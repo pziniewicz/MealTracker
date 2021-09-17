@@ -3,6 +3,7 @@ package pl.zini.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -17,10 +18,10 @@ public class Ingredient {
     private String name;
     private String brand;
     private Integer quantity;
-    private Number calories;
-    private Number carbs;
-    private Number protein;
-    private Number fat;
+    private BigDecimal calories;
+    private BigDecimal carbs;
+    private BigDecimal protein;
+    private BigDecimal fat;
     private Long productId;
 
     @ManyToOne

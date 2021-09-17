@@ -64,8 +64,8 @@
 
 
                 <!-- DATA TABLE -->
-                <c:forEach items="${mealNames}" var="mealname">
-                <div class="alert alert-primary"><b>${mealname.name}</b></div>
+                <c:forEach items="${meals}" var="meal">
+                <div class="alert alert-primary"><b>${meal.mealName.name}</b></div>
                 <div class="table-responsive table-responsive-data2">
                     <table class="table table-data2">
                         <tbody>
@@ -80,7 +80,7 @@
                             <th>Kcal</th>
                             <th>Gramatura</th>
                             <th>
-                                <a href="ingredient/${param.date}/${mealname.id}/${activePlan.id}">
+                                <a href="ingredient/${param.date}/${meal.id}/">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                      <i class="zmdi zmdi-plus"></i></button></a>
                             </th>
