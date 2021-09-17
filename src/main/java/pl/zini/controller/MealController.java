@@ -52,11 +52,11 @@ public class MealController {
                 mealService.save(meal);
             }
         }
-        List<Meal> mealList = mealService.getByDateAndPlanAndMealName();
+//        List<Meal> mealList = mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealNames);
         return "meal/meals";
     }
 
-    @GetMapping(value = "/create/{", produces = "text/plain;charset=UTF-8")
+    @GetMapping(value = "/create/", produces = "text/plain;charset=UTF-8")
     public String create(Long id, Model model) {
         Plan plan;
         if (id != null) {

@@ -17,8 +17,7 @@ public class MealName {
     private Long id;
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "plan_meal_names")
+    @ManyToMany(mappedBy = "mealNames")
     private List<Plan> plans = new ArrayList<>();
 
 }

@@ -4,14 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "meals", indexes = {
-        @Index(name = "idx_meal_mealname_id", columnList = "mealName_id")
-})
+@Table(name = "meals")
 public class Meal {
 
     @Id
@@ -21,10 +18,11 @@ public class Meal {
     private LocalDate date;
 
     @ManyToOne
+    @JoinColumn(name = "plan_id")
     private Plan plan;
 
     @OneToMany
-    private List<Ingridient> ingridients;
+    private List<Ingredient> ingredients;
 
     @ManyToOne
     private MealName mealName;

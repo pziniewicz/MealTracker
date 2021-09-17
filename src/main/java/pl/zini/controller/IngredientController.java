@@ -12,11 +12,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/ingredient")
-public class IngridientController {
+public class IngredientController {
 
     private final ProductServiceApi productServiceApi;
 
-    public IngridientController(ProductServiceApi productServiceApi) {
+    public IngredientController(ProductServiceApi productServiceApi) {
         this.productServiceApi = productServiceApi;
     }
 
