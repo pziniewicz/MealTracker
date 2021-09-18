@@ -7,6 +7,8 @@ import pl.zini.model.User;
 import pl.zini.repository.RoleRepository;
 import pl.zini.repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -16,11 +18,13 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final HttpServletRequest request;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, HttpServletRequest request) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.request = request;
     }
 
     @Override
@@ -35,5 +39,10 @@ public class UserServiceImpl implements UserService{
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+    }
+
+    public User getSessionUser() {
+        Principal principal = request.getUserPrincipal();
+        return findByEmail(principal.getName());
     }
 }

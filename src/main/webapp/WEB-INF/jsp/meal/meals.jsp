@@ -24,26 +24,44 @@
                         <span class="au-progress__title">Kalorie - ${data.calories} /<b>${data.calDemand}</b></span>
                         <div class="au-progress__bar">
                             <div class="progress mb-2">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: ${data.caloriesPercent}%" aria-valuenow="${data.caloriesPercent}%" aria-valuemin="0" aria-valuemax="100">${data.caloriesPercent}%</div>
+                                <div class="progress-bar bg-info" role="progressbar"
+                                     style="width: ${data.caloriesPercent}%" aria-valuenow="${data.caloriesPercent}%"
+                                     aria-valuemin="0" aria-valuemax="100">${data.caloriesPercent}%
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Białko - ${data.protein} /<b>${data.proteinDemand}</b></span>
+                        <div class="au-progress__bar">
                         <div class="progress mb-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.proteinPercent}%" aria-valuenow="${data.proteinPercent}%" aria-valuemin="0" aria-valuemax="100">${data.proteinPercent}%</div>
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                 style="width: ${data.proteinPercent}%" aria-valuenow="${data.proteinPercent}%"
+                                 aria-valuemin="0" aria-valuemax="100">${data.proteinPercent}%
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Węglowodany - ${data.carbs} /<b>${data.carbsDemand}</b></span>
+                        <div class="au-progress__bar">
                         <div class="progress mb-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.carbsPercent}%" aria-valuenow="${data.carbsPercent}%" aria-valuemin="0" aria-valuemax="100">${data.carbsPercent}%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.carbsPercent}%"
+                                 aria-valuenow="${data.carbsPercent}%" aria-valuemin="0"
+                                 aria-valuemax="100">${data.carbsPercent}%
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Tłuszcze  - ${data.fat} /<b>${data.fatDemand} </b></span>
+                        <div class="au-progress__bar">
                         <div class="progress mb-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.fatPercent}%" aria-valuenow="${data.fatPercent}%" aria-valuemin="0" aria-valuemax="100">${data.fatPercent}%</div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: ${data.fatPercent}%"
+                                 aria-valuenow="${data.fatPercent}%" aria-valuemin="0"
+                                 aria-valuemax="100">${data.fatPercent}%
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +96,7 @@
                             <td class="col col-md-3"><b>${ingredient.fat}</b><br>${ingredient.fatPer100g}<br><small>w 100g</small></td>
                             <td class="col col-md-3"><b>${ingredient.calories}</b><br>${ingredient.caloriesPer100g}<br><small>w 100g</small></td>
                             <form method="get" action="/ingredient/edit">
-                                <td><b><big><div class="col col-md-2" >wartość<br><input type="text" name="quantity" pattern="\d+" min="0" style="background-color: #00a2e3" value="${ingredient.quantity} "/></div></big></b></td>
+                                <td><b><big><div class="col col-md-1" >wartość<br><input type="text" name="quantity" pattern="\d+" min="0" style="background-color: #00a2e3" value="${ingredient.quantity} "/></div></big></b></td>
                                 <input type="hidden" name="id" value="${ingredient.id}">
                                 <input type="hidden" name="date" value="${param.date}">
 

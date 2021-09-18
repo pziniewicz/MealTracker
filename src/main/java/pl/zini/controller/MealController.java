@@ -38,13 +38,13 @@ public class MealController {
     @Transactional
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(String date, Model model) {
-        Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
+        Plan activePlan = planService.getByUserAndIsActive(userService.getSessionUser(), 1);
         model.addAttribute("activePlan", activePlan);
         if (activePlan!= null) {
             List<MealName> mealNames = activePlan.getMealNames();
             model.addAttribute("mealNames", mealNames);
             mealService.createMeals(date, activePlan);
-            Map<String, Integer> data = mealService.getCaloryAndMakrosData(date, getSessionUser());
+            Map<String, Integer> data = mealService.getCaloryAndMakrosData(date, userService.getSessionUser());
             model.addAttribute("data", data);
             List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
             model.addAttribute("meals", meals);
@@ -71,7 +71,7 @@ public class MealController {
         if (result.hasErrors()) {
             return "plan/newPlan";
         }
-        plan.setUser(getSessionUser());
+        plan.setUser(userService.getSessionUser());
         planService.save(plan);
         return "redirect:/plan/";
     }
@@ -102,10 +102,5 @@ public class MealController {
         ingredients.add(ingredient);
         mealService.save(meal);
         return "redirect:/meal?date=" + date;
-    }
-
-    public User getSessionUser() {
-        Principal principal = request.getUserPrincipal();
-        return userService.findByEmail(principal.getName());
     }
 }

@@ -7,12 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.zini.model.MealName;
 import pl.zini.model.Plan;
-import pl.zini.model.User;
 import pl.zini.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -38,7 +36,7 @@ public class PlanController {
 
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(Model model) {
-        List<Plan> plans = planService.findByUserId(getSessionUser().getId());
+        List<Plan> plans = planService.findByUserId(userService.getSessionUser().getId());
         model.addAttribute("plans", plans);
         return "plan/plans";
     }
@@ -75,7 +73,7 @@ public class PlanController {
         if (result.hasErrors()) {
             return "plan/newPlan";
         }
-        plan.setUser(getSessionUser());
+        plan.setUser(userService.getSessionUser());
         planService.save(plan);
         return "redirect:/plan/";
     }
@@ -89,12 +87,7 @@ public class PlanController {
 
     @GetMapping("/setActive/{id}")
     public String setActive(@PathVariable String id) {
-        planService.setActive(getSessionUser().getId(),Long.parseLong(id));
+        planService.setActive(userService.getSessionUser().getId(),Long.parseLong(id));
         return "redirect:/plan/";
-    }
-
-    public User getSessionUser() {
-        Principal principal = request.getUserPrincipal();
-        return userService.findByEmail(principal.getName());
     }
 }
