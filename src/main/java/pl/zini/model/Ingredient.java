@@ -22,11 +22,29 @@ public class Ingredient {
     private BigDecimal carbs;
     private BigDecimal protein;
     private BigDecimal fat;
+    private BigDecimal caloriesPer100g;
+    private BigDecimal carbsPer100g;
+    private BigDecimal proteinPer100g;
+    private BigDecimal fatPer100g;
     private Long productId;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "meal_id")
     private Meal meal;
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+        this.calories = recount(caloriesPer100g);
+        this.carbs = recount(carbsPer100g);
+        this.protein = recount(proteinPer100g);
+        this.fat = recount(fatPer100g);
+    }
+
+    public BigDecimal recount(BigDecimal number) {
+        BigDecimal result = number.divide(BigDecimal.valueOf(100));
+        result = result.multiply(new BigDecimal(quantity));
+        return result;
+    }
 
 
 }

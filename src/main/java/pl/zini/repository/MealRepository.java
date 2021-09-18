@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.zini.model.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,5 +22,9 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     @Query(value = "DELETE FROM meals where mealName_id = :mealNameId and plan_id = :planId ", nativeQuery = true)
     void deleteMealsByMealNameAndPlan(Long mealNameId, Long planId);
+
+    @Query(value = "SELECT FROM meals where mealName_id = :mealNameId and plan_id = :planId ", nativeQuery = true)
+    void sumCaloriesPerDay(Long mealNameId, Long planId);
+
 
 }

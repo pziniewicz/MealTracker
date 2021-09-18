@@ -67,16 +67,6 @@
                                         <form:errors path="gender" cssClass="error" element="div"/>
                                     </div>
                                 </div>
-                                <%--    <div class="row form-group">--%>
-                                <%--    <div class="col col-md-3">--%>
-                                <%--    <label for="text-input" class=" form-control-label">Zapotrzebowanie--%>
-                                <%--    kaloryczne </label>--%>
-                                <%--    </div>--%>
-                                <%--    <div class="col-12 col-md-3">--%>
-                                <%--    <input type="text" id="text-input" name="text-input" placeholder="Text"--%>
-                                <%--    class="form-control">--%>
-                                <%--    <small class="form-text text-muted">kCal</small>--%>
-                                <%--    </div>--%>
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <form:label path="proteinPercent">Białka %</form:label>
@@ -114,6 +104,8 @@
                                             <div class="custom-checkbox ">
                                                 <form:checkboxes path="mealNames"
                                                                  items="${mealNames}" itemLabel="name" itemValue="id" delimiter="<br/>"/>
+                                                <form:errors path="mealNames" cssClass="error" element="div"/>
+
                                             </div>
                                         </div>
                                     </div>

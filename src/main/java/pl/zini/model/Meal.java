@@ -22,7 +22,7 @@ public class Meal {
     @JoinColumn(name = "plan_id")
     private Plan plan;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     private List<Ingredient> ingredients = new ArrayList<>();
 
     @ManyToOne
