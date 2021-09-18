@@ -21,35 +21,31 @@
                             <input type="date" name="date" value="${param.date}" onchange="this.form.submit()"></form>
                     </h3>
                     <div class="au-progress">
-                        <span class="au-progress__title">Kalorie</span>
-                        <div class="progress mb-2">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
-                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
+                        <span class="au-progress__title">Kalorie - ${data.calories} /<b>${data.calDemand}</b></span>
+                        <div class="au-progress__bar">
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: ${data.caloriesPercent}%" aria-valuenow="${data.caloriesPercent}%" aria-valuemin="0" aria-valuemax="100">${data.caloriesPercent}%</div>
                             </div>
                         </div>
                     </div>
                     <div class="au-progress">
-                        <span class="au-progress__title">Białko</span>
+                        <span class="au-progress__title">Białko - ${data.protein} /<b>${data.proteinDemand}</b></span>
                         <div class="progress mb-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                                 aria-valuemin="0" aria-valuemax="100">50%
-                            </div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.proteinPercent}%" aria-valuenow="${data.proteinPercent}%" aria-valuemin="0" aria-valuemax="100">${data.proteinPercent}%</div>
+                        </div>
+
+
+                    </div>
+                    <div class="au-progress">
+                        <span class="au-progress__title">Węglowodany - ${data.carbs} /<b>${data.carbsDemand}</b></span>
+                        <div class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.carbsPercent}%" aria-valuenow="${data.carbsPercent}%" aria-valuemin="0" aria-valuemax="100">${data.carbsPercent}%</div>
                         </div>
                     </div>
                     <div class="au-progress">
-                        <span class="au-progress__title">Węglowodany</span>
+                        <span class="au-progress__title">Tłuszcze  - ${data.fat} /<b>${data.fatDemand} </b></span>
                         <div class="progress mb-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%
-                            </div>
-                        </div>
-                    </div>
-                    <div class="au-progress">
-                        <span class="au-progress__title">Tłuszcze</span>
-                        <div class="progress mb-2">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="90"
-                                 aria-valuemin="0" aria-valuemax="100">90%
-                            </div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: ${data.fatPercent}%" aria-valuenow="${data.fatPercent}%" aria-valuemin="0" aria-valuemax="100">${data.fatPercent}%</div>
                         </div>
                     </div>
                 </div>
@@ -63,12 +59,12 @@
                 <div class="table-responsive table-responsive-data2">
                     <table class="table table-data2">
                         <tr>
-                            <th>Produkt</th>
-                            <th>Białka</th>
-                            <th>Węglowodany</th>
-                            <th>Tłuszcze</th>
-                            <th>Kcal</th>
-                            <th>Gramatura</th>
+                            <th class="col col-md-5">Produkt</th>
+                            <th class="col col-md-3">Białka</th>
+                            <th class="col col-md-3">Węglowodany</th>
+                            <th class="col col-md-3">Tłuszcze</th>
+                            <th class="col col-md-3">Kcal</th>
+                            <th class="col col-md-3">Gramatura</th>
                             <th>
                                 <a href="ingredient/search/${param.date}/${meal.id}/">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
@@ -78,13 +74,13 @@
                         </tr>
                         <c:forEach items="${meal.ingredients}" var="ingredient">
                         <tr class="tr-shadow">
-                            <td>${ingredient.name}</td>
-                            <td>${ingredient.protein}</td>
-                            <td>${ingredient.carbs}</td>
-                            <td>${ingredient.fat}</td>
-                            <td>${ingredient.calories}</td>
+                            <td class="col col-md-5">${ingredient.name}</td>
+                            <td class="col col-md-3"><b>${ingredient.protein}</b><br>${ingredient.proteinPer100g}<br><small>w 100g</small></r></td>
+                            <td class="col col-md-3"><b>${ingredient.carbs}</b><br>${ingredient.carbsPer100g}<br><small>w 100g</small></td>
+                            <td class="col col-md-3"><b>${ingredient.fat}</b><br>${ingredient.fatPer100g}<br><small>w 100g</small></td>
+                            <td class="col col-md-3"><b>${ingredient.calories}</b><br>${ingredient.caloriesPer100g}<br><small>w 100g</small></td>
                             <form method="get" action="/ingredient/edit">
-                                <td><input type="text" name="quantity" value="${ingredient.quantity}"></td>
+                                <td><b><big><div class="col col-md-2" >wartość<br><input type="text" name="quantity" style="background-color: #00a2e3" value="${ingredient.quantity}"/></div></big></b></td>
                                 <input type="hidden" name="id" value="${ingredient.id}">
                                 <input type="hidden" name="date" value="${param.date}">
 

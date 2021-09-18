@@ -89,13 +89,7 @@ public class PlanController {
 
     @GetMapping("/setActive/{id}")
     public String setActive(@PathVariable String id) {
-        List<Plan> plans = planService.findByUserId(getSessionUser().getId());
-        Plan plan = planService.getById(Long.parseLong(id));
-        for (Plan plan1 : plans) {
-            plan1.setIsActive(0);
-        }
-        plan.setIsActive(1);
-        planService.save(plan);
+        planService.setActive(getSessionUser().getId(),Long.parseLong(id));
         return "redirect:/plan/";
     }
 

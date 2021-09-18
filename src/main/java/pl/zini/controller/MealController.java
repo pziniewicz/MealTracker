@@ -40,21 +40,24 @@ public class MealController {
     public String showAll(String date, Model model) {
         Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
         model.addAttribute("activePlan", activePlan);
-        List<MealName> mealNames = activePlan.getMealNames();
-        model.addAttribute("mealNames", mealNames);
-        for (MealName mealName : mealNames) {
-            if (mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealName) == null) {
-                Meal meal = new Meal();
-                meal.setDate(LocalDate.parse(date));
-                meal.setPlan(activePlan);
-                meal.setMealName(mealName);
-                mealService.save(meal);
+        if (activePlan!= null) {
+            List<MealName> mealNames = activePlan.getMealNames();
+            model.addAttribute("mealNames", mealNames);
+            for (MealName mealName : mealNames) {
+                if (mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealName) == null) {
+                    Meal meal = new Meal();
+                    meal.setDate(LocalDate.parse(date));
+                    meal.setPlan(activePlan);
+                    meal.setMealName(mealName);
+                    mealService.save(meal);
+                }
             }
-        }
 
-        List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
-        System.out.println(meals);
-        model.addAttribute("meals", meals);
+            Map<String, Integer> data = getCaloryAndMakrosData(date);
+            model.addAttribute("data", data);
+            List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
+            model.addAttribute("meals", meals);
+        }
         return "meal/meals";
     }
 
@@ -97,10 +100,11 @@ public class MealController {
         Ingredient ingredient = new Ingredient();
         ingredient.setName(name.trim());
         ingredient.setBrand(brand.trim());
-        ingredient.setCalories(calories);
-        ingredient.setCarbs(carbs);
-        ingredient.setProtein(protein);
-        ingredient.setFat(fat);
+        ingredient.setCaloriesPer100g(calories);
+        ingredient.setCarbsPer100g(carbs);
+        ingredient.setProteinPer100g(protein);
+        ingredient.setFatPer100g(fat);
+        ingredient.setQuantity(0);
         ingredient.setProductId(productId);
         ingredientService.save(ingredient);
         Meal meal = mealService.getById(mealId);
@@ -116,14 +120,43 @@ public class MealController {
         return userService.findByEmail(principal.getName());
     }
 
-    public Map<String, Integer> getCaloryAndMakrosData(LocalDate date) {
-        Map<String,Integer> data = new HashMap<>() ;
+    public Map<String, Integer> getCaloryAndMakrosData(String date) {
+        Map<String, Integer> data = new HashMap<>();
         Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
-        data.put("calPercent", activePlan.getCaloricDemand());
+        data.put("calDemand", activePlan.getCaloricDemand());
         data.put("proteinDemand", activePlan.getProteinQuantity());
         data.put("carbsDemand", activePlan.getCarbsQuantity());
         data.put("fatDemand", activePlan.getFatQuantity());
+        List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
+        Integer calories = 0;
+        Integer protein = 0;
+        Integer carbs = 0;
+        Integer fat = 0;
+        for (Meal meal : meals) {
+            for (Ingredient ingredient : meal.getIngredients()) {
+                calories += ingredient.getCalories()
+                        .intValue();
+                protein += ingredient.getProtein()
+                        .intValue();
+                carbs += ingredient.getCarbs()
+                        .intValue();
+                fat += ingredient.getFat()
+                        .intValue();
+            }
+        }
+        Integer caloriesPercent = (calories*10 / activePlan.getCaloricDemand()) *10 ;
+        Integer proteinPercent = (protein*10 / activePlan.getProteinQuantity()) *10;
+        Integer carbsPercent = (carbs*10 / activePlan.getCarbsQuantity()) *10;
+        Integer fatPercent = (fat*10 / activePlan.getFatQuantity()) *10;
 
+        data.put("calories", calories);
+        data.put("protein", protein);
+        data.put("carbs", carbs);
+        data.put("fat", fat);
+        data.put("caloriesPercent", caloriesPercent);
+        data.put("proteinPercent", proteinPercent);
+        data.put("carbsPercent", carbsPercent);
+        data.put("fatPercent", fatPercent);
         return data;
     }
 

@@ -22,10 +22,6 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li>
-                        <a href="/">
-                            <i class="fas fa-chart-bar"></i>Tablica</a>
-                    </li>
-                    <li>
                         <a href="/meal?date=<%= (java.time.LocalDate.now())%>">
                             <i class="fas fa-tasks"></i>Posilki</a>
                     </li>

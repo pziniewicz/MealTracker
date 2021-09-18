@@ -38,6 +38,11 @@
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="animsition">

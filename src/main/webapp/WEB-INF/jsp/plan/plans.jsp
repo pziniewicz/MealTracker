@@ -57,17 +57,17 @@
                                 <div class="table-data-feature">
                                     <a href="/plan/setActive/${p.id}">
                                         <button class="item" data-toggle="tooltip" data-placement="top"
-                                                title="SetActive">
+                                                title="Ustaw Aktywny">
                                             <i class="zmdi zmdi-mail-send"></i>
                                         </button>
                                     </a>
                                     <a href="/plan/create?id=${p.id}">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edytuj">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
                                     </a>
                                     <a href="/plan/delete/${p.id}">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Usuń">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
                                     </a>

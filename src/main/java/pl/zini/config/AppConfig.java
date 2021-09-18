@@ -57,6 +57,4 @@ public class AppConfig implements WebMvcConfigurer {
                 .addResourceHandler("/resources/**","/resources/static/**")
                 .addResourceLocations("/resources/", "/resources/static/");
     }
-
-
 }

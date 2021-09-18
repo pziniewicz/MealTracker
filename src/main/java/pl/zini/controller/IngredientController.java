@@ -12,6 +12,7 @@ import pl.zini.service.IngredientService;
 import pl.zini.service.ProductServiceApi;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class IngredientController {
 
     @RequestMapping(value = "/edit", produces = "text/plain;charset=UTF-8")
     @Transactional
-    public String edit(@RequestParam Integer quantity, @RequestParam Long ingredientId, @RequestParam String date) throws IOException {
-        ingredientService.edit(ingredientId, quantity);
+    public String edit(@RequestParam String quantity, @RequestParam String id, @RequestParam String date) throws IOException {
+        ingredientService.edit(Long.parseLong(id), Integer.valueOf(quantity));
         return "redirect:/meal?date=" + date;
     }
 

@@ -44,6 +44,6 @@ public class MainController {
             return "register";
         }
         userService.saveUser(user);
-        return "redirect:/user/";
+        return "redirect:/login";
     }
 }
