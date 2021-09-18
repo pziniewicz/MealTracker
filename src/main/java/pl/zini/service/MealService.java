@@ -1,6 +1,7 @@
 package pl.zini.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.zini.model.*;
 import pl.zini.repository.MealRepository;
 
@@ -44,6 +45,7 @@ public class MealService {
         mealRepository.deleteMealsByMealNameAndPlan(mealNameId, planId);
     }
 
+    @Transactional
     public void createMeals(String date, Plan activePlan) {
         List<MealName> mealNames = activePlan.getMealNames();
         for (MealName mealName : mealNames) {
