@@ -55,7 +55,7 @@ public class ProductFromApi {
     }
 
     public void setBrand(String brand) {
-        if (brand.equals("")) {
+        if (!brand.equals("")) {
             this.brand = brand;
         } else {
             this.brand = "Brak producenta";

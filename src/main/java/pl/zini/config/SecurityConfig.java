@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/meal?date=<%= (java.time.LocalDate.now())%>")
                 .permitAll()
                 .and()
                 .logout()

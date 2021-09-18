@@ -3,6 +3,8 @@ package pl.zini.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +19,32 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @NotBlank
     private String name;
+
+    @NotNull
     private double height;
+
+    @NotNull
     private Double weight;
+
     private Integer gender;
+
+    @NotNull
     private Integer age;
+
     private Integer caloricDemand;
+
+    @NotNull
     private Integer carbsPercent;
+
+    @NotNull
     private Integer proteinPercent;
+
+    @NotNull
     private Integer fatPercent;
+
     private Integer carbsQuantity;
     private Integer proteinQuantity;
     private Integer fatQuantity;
