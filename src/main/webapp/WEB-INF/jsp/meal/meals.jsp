@@ -33,8 +33,6 @@
                         <div class="progress mb-2">
                             <div class="progress-bar bg-success" role="progressbar" style="width: ${data.proteinPercent}%" aria-valuenow="${data.proteinPercent}%" aria-valuemin="0" aria-valuemax="100">${data.proteinPercent}%</div>
                         </div>
-
-
                     </div>
                     <div class="au-progress">
                         <span class="au-progress__title">Węglowodany - ${data.carbs} /<b>${data.carbsDemand}</b></span>

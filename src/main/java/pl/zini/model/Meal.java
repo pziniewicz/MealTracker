@@ -1,6 +1,9 @@
 package pl.zini.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,7 +25,8 @@ public class Meal {
     @JoinColumn(name = "plan_id")
     private Plan plan;
 
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(cascade={CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     private List<Ingredient> ingredients = new ArrayList<>();
 
     @ManyToOne

@@ -50,17 +50,18 @@ public class PlanController {
         Plan plan;
         if (id != null) {
             plan = planService.getById(id);
-            for (MealName mealName : mealNameService.findAll()) {
-                boolean flag = false;
-                for (MealName mealNamePlan : plan.getMealNames()) {
-                    if (mealNamePlan.getName().equals(mealName.getName())) {
-                        flag = true;
-                    }
-                }
-                if (flag = false) {
-                    mealService.deleteMealsByMealNameAndPlan(mealName.getId(), plan.getId());
-                }
-            }
+            // editing selected meals for the day - not working because of database configurtion
+//            for (MealName mealName : mealNameService.findAll()) {
+//                boolean flag = false;
+//                for (MealName mealNamePlan : plan.getMealNames()) {
+//                    if (mealName.getName().equals(mealNamePlan.getName())) {
+//                        flag = true;
+//                    }
+//                }
+//                if (flag = false) {
+//                    mealService.deleteMealsByMealNameAndPlan(mealName.getId(), plan.getId());
+//                }
+//            }
         } else {
             plan = new Plan();
         }
