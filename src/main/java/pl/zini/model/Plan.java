@@ -71,7 +71,6 @@ public class Plan {
             caloric = 66.47 + (13.7 * this.weight) + (5 * this.height) - (6.76 * this.age);
         }
         this.caloricDemand = caloric.intValue();
-
         setCarbsQuantity(caloric);
         setProteinQuantity(caloric);
         setFatQuantity(caloric);

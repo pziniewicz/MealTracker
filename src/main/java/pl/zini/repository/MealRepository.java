@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Long> {
 
-
     Meal getByDateAndPlanAndMealName(LocalDate date, Plan plan, MealName mealName);
 
     Meal getById(Long id);
@@ -25,6 +24,4 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     @Query(value = "SELECT FROM meals where mealName_id = :mealNameId and plan_id = :planId ", nativeQuery = true)
     void sumCaloriesPerDay(Long mealNameId, Long planId);
-
-
 }

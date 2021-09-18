@@ -7,5 +7,4 @@ import pl.zini.model.Ingredient;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
-
 }

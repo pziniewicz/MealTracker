@@ -28,12 +28,12 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
+    //product search to add to meal
     @RequestMapping(value = "/search/{date}/{mealId}", produces = "text/plain;charset=UTF-8")
     @Transactional
     public String products(@PathVariable String date, @PathVariable Long mealId, @RequestParam(required = false) String search, Model model) throws IOException {
         model.addAttribute(date);
         model.addAttribute(mealId);
-
         if (search != null) {
             List<ProductFromApi> productList = productServiceApi.productSearch(search);
             model.addAttribute("productList", productList);
@@ -41,6 +41,7 @@ public class IngredientController {
         return "ingredient/ingredient";
     }
 
+    //edit quantity of product
     @RequestMapping(value = "/edit", produces = "text/plain;charset=UTF-8")
     @Transactional
     public String edit(@RequestParam String quantity, @RequestParam String id, @RequestParam String date) throws IOException {
@@ -48,6 +49,7 @@ public class IngredientController {
         return "redirect:/meal?date=" + date;
     }
 
+    //deletion not working due to database configuration
     @RequestMapping(value = "/delete/{ingredientId}/{date}", produces = "text/plain;charset=UTF-8")
     @Transactional
     public String delete(@PathVariable Long ingredientId, @PathVariable String date) throws IOException {
@@ -55,5 +57,4 @@ public class IngredientController {
         ingredientService.delete(ingredient);
         return "redirect:/meal?date=" + date;
     }
-
 }

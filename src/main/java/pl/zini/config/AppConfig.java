@@ -18,7 +18,6 @@ import java.util.Locale;
 
 @Configuration
 @EnableAutoConfiguration
-//@EnableWebMvc
 @ComponentScan(basePackages = "pl.zini")
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
@@ -54,7 +53,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/resources/**","/resources/static/**")
+                .addResourceHandler("/resources/**", "/resources/static/**")
                 .addResourceLocations("/resources/", "/resources/static/");
     }
 }

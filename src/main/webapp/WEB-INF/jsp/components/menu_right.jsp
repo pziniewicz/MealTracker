@@ -25,6 +25,7 @@
                         <a href="/meal?date=<%= (java.time.LocalDate.now())%>">
                             <i class="fas fa-tasks"></i>Posilki</a>
                     </li>
+<%--                    Calendar with meals -- future functionality--%>
 <%--                    <li>--%>
 <%--                        <a href="/new">--%>
 <%--                            <i class="fas fa-calendar-alt"></i>Kalendarz</a>--%>
@@ -38,10 +39,11 @@
                             <i class="fas fa-shopping-basket"></i>Wyszukaj produkt</a>
                     </li>
                     <li></li>
-                    <li>
-                        <a href="/user">
-                            <i class="fas fa-user"></i>Uzytkownicy</a>
-                    </li>
+                    <%--                    user management -- future functionality--%>
+<%--                    <li>--%>
+<%--                        <a href="/user">--%>
+<%--                            <i class="fas fa-user"></i>Uzytkownicy</a>--%>
+<%--                    </li>--%>
                 </ul>
             </nav>
         </div>

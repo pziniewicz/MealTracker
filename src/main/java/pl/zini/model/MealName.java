@@ -19,5 +19,4 @@ public class MealName {
 
     @ManyToMany(mappedBy = "mealNames")
     private List<Plan> plans = new ArrayList<>();
-
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.zini.service.UserServiceImpl;
 
+//in the future - possibility to manage users by admin
 @Controller
 @RequestMapping("/user")
 public class UserController {

@@ -13,13 +13,13 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-
     public void save(Ingredient ingredient) {
         ingredientRepository.save(ingredient);
     }
 
     public void edit(Long ingredientId, Integer quantity) {
-        ingredientRepository.getById(ingredientId).setQuantity(quantity);
+        ingredientRepository.getById(ingredientId)
+                .setQuantity(quantity);
     }
 
     public void delete(Ingredient ingredient) {

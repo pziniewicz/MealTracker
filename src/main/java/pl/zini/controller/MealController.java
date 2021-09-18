@@ -43,17 +43,8 @@ public class MealController {
         if (activePlan!= null) {
             List<MealName> mealNames = activePlan.getMealNames();
             model.addAttribute("mealNames", mealNames);
-            for (MealName mealName : mealNames) {
-                if (mealService.getByDateAndPlanAndMealName(LocalDate.parse(date), activePlan, mealName) == null) {
-                    Meal meal = new Meal();
-                    meal.setDate(LocalDate.parse(date));
-                    meal.setPlan(activePlan);
-                    meal.setMealName(mealName);
-                    mealService.save(meal);
-                }
-            }
-
-            Map<String, Integer> data = getCaloryAndMakrosData(date);
+            mealService.createMeals(date, activePlan);
+            Map<String, Integer> data = mealService.getCaloryAndMakrosData(date, getSessionUser());
             model.addAttribute("data", data);
             List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
             model.addAttribute("meals", meals);
@@ -69,7 +60,7 @@ public class MealController {
         } else {
             plan = new Plan();
         }
-        List<MealName> mealNames = mealNames = mealNameService.findAll();
+        List<MealName> mealNames = mealNameService.findAll();
         model.addAttribute("mealNames", mealNames);
         model.addAttribute(plan);
         return "plan/newPlan";
@@ -96,7 +87,6 @@ public class MealController {
                       @PathVariable BigDecimal protein,
                       @PathVariable BigDecimal fat,
                       @PathVariable Long productId) {
-
         Ingredient ingredient = new Ingredient();
         ingredient.setName(name.trim());
         ingredient.setBrand(brand.trim());
@@ -111,7 +101,6 @@ public class MealController {
         List<Ingredient> ingredients = meal.getIngredients();
         ingredients.add(ingredient);
         mealService.save(meal);
-
         return "redirect:/meal?date=" + date;
     }
 
@@ -119,45 +108,4 @@ public class MealController {
         Principal principal = request.getUserPrincipal();
         return userService.findByEmail(principal.getName());
     }
-
-    public Map<String, Integer> getCaloryAndMakrosData(String date) {
-        Map<String, Integer> data = new HashMap<>();
-        Plan activePlan = planService.getByUserAndIsActive(getSessionUser(), 1);
-        data.put("calDemand", activePlan.getCaloricDemand());
-        data.put("proteinDemand", activePlan.getProteinQuantity());
-        data.put("carbsDemand", activePlan.getCarbsQuantity());
-        data.put("fatDemand", activePlan.getFatQuantity());
-        List<Meal> meals = mealService.getByDateAndPlan(LocalDate.parse(date), activePlan.getId());
-        Integer calories = 0;
-        Integer protein = 0;
-        Integer carbs = 0;
-        Integer fat = 0;
-        for (Meal meal : meals) {
-            for (Ingredient ingredient : meal.getIngredients()) {
-                calories += ingredient.getCalories()
-                        .intValue();
-                protein += ingredient.getProtein()
-                        .intValue();
-                carbs += ingredient.getCarbs()
-                        .intValue();
-                fat += ingredient.getFat()
-                        .intValue();
-            }
-        }
-        Integer caloriesPercent = (calories*10 / activePlan.getCaloricDemand()) *10 ;
-        Integer proteinPercent = (protein*10 / activePlan.getProteinQuantity()) *10;
-        Integer carbsPercent = (carbs*10 / activePlan.getCarbsQuantity()) *10;
-        Integer fatPercent = (fat*10 / activePlan.getFatQuantity()) *10;
-
-        data.put("calories", calories);
-        data.put("protein", protein);
-        data.put("carbs", carbs);
-        data.put("fat", fat);
-        data.put("caloriesPercent", caloriesPercent);
-        data.put("proteinPercent", proteinPercent);
-        data.put("carbsPercent", carbsPercent);
-        data.put("fatPercent", fatPercent);
-        return data;
-    }
-
 }

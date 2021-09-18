@@ -22,7 +22,10 @@ public class PlanService {
     }
 
     public void save(Plan plan) {
-        plan.setIsActive(0);
+        planRepository.save(plan);
+        setActive(plan.getUser()
+                .getId(), plan.getId());
+        plan.setIsActive(1);
         plan.setCaloricDemandAndMacros();
         planRepository.save(plan);
     }
@@ -31,9 +34,10 @@ public class PlanService {
         return planRepository.findByUserId(userId);
     }
 
-    public void delete(Plan article) {
-        planRepository.delete(article);
+    public void delete(Plan plan) {
+        planRepository.delete(plan);
     }
+
     public List<Plan> findAll() {
         return planRepository.findAll();
     }
@@ -51,6 +55,4 @@ public class PlanService {
         plan.setIsActive(1);
         planRepository.save(plan);
     }
-
-
 }
