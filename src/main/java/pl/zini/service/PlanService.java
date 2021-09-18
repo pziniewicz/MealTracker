@@ -23,7 +23,8 @@ public class PlanService {
 
     public void save(Plan plan) {
         planRepository.save(plan);
-        setActive(plan.getUser().getId(),plan.getId());
+        setActive(plan.getUser()
+                .getId(), plan.getId());
         plan.setIsActive(1);
         plan.setCaloricDemandAndMacros();
         planRepository.save(plan);
@@ -36,6 +37,7 @@ public class PlanService {
     public void delete(Plan plan) {
         planRepository.delete(plan);
     }
+
     public List<Plan> findAll() {
         return planRepository.findAll();
     }
@@ -53,6 +55,4 @@ public class PlanService {
         plan.setIsActive(1);
         planRepository.save(plan);
     }
-
-
 }

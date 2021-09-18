@@ -68,7 +68,6 @@ public class ProductFromApi {
 
     public void setCalories(Number calories) {
         this.calories = (new BigDecimal(calories.doubleValue())).setScale(2, RoundingMode.HALF_UP);
-        ;
     }
 
     public Number getCarbs() {

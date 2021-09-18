@@ -1,20 +1,12 @@
 package pl.zini.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.zini.model.CurrentUser;
-import pl.zini.model.Plan;
 import pl.zini.model.User;
 import pl.zini.service.UserServiceImpl;
-
 import javax.validation.Valid;
-import java.awt.print.Book;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequestMapping("")
