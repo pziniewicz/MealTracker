@@ -14,11 +14,11 @@
         <div class="section__content section__content--p10">
             <!-- TASK PROGRESS-->
             <div class="task-progress">
-                <%--    <h3 class="title-3">task progress</h3>--%>
                 <div class="au-skill-container">
                     <h3 class="title-1 m-b-5">
-                        <button type="button" class="btn btn-secondary">poprzedni</button>
-                        <button type="button" class="btn btn-primary">następny</button>
+                        Wyszukiwarka Produktów
+<%--                        <button type="button" class="btn btn-secondary">poprzedni</button>--%>
+<%--                        <button type="button" class="btn btn-primary">następny</button>--%>
                     </h3>
                 </div>
             </div>

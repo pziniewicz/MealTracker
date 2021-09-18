@@ -96,7 +96,7 @@
                             <td class="col col-md-3"><b>${ingredient.fat}</b><br>${ingredient.fatPer100g}<br><small>w 100g</small></td>
                             <td class="col col-md-3"><b>${ingredient.calories}</b><br>${ingredient.caloriesPer100g}<br><small>w 100g</small></td>
                             <form method="get" action="/ingredient/edit">
-                                <td><b><big><div class="col col-md-2" >wartość<br><input type="text" name="quantity" pattern="\d+" min="0" style="background-color: #00a2e3" value="${ingredient.quantity} "/></div></big></b></td>
+                                <td><b><big><div class="col col-md-1" >wartość<br><input type="text" name="quantity" pattern="\d+" min="0" style="background-color: #00a2e3" value="${ingredient.quantity} "/></div></big></b></td>
                                 <input type="hidden" name="id" value="${ingredient.id}">
                                 <input type="hidden" name="date" value="${param.date}">
 

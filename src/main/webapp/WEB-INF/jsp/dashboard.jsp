@@ -61,6 +61,8 @@
                         </div>
                         </div>
                     </div>
+                    <br><br>
+                    <a href="/meal?date=${date}">Przejdź do szczegółów</a>
                 </div>
             </div>
             <!-- END TASK PROGRESS-->

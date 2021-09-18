@@ -12,8 +12,6 @@ import pl.zini.service.IngredientService;
 import pl.zini.service.ProductServiceApi;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
