@@ -35,7 +35,6 @@ public class MealController {
         this.ingredientService = ingredientService;
     }
 
-    @Transactional
     @RequestMapping(value = "", produces = "text/plain;charset=UTF-8")
     public String showAll(String date, Model model) {
         Plan activePlan = planService.getByUserAndIsActive(userService.getSessionUser(), 1);
@@ -90,6 +89,9 @@ public class MealController {
                       @PathVariable BigDecimal protein,
                       @PathVariable BigDecimal fat,
                       @PathVariable Long productId) {
+        //POST
+        // Ingredient ing = this.ingedientFromPostData(name, brnad, calories,...)
+        // mealService.addToMeal(meailId, ing);
         Ingredient ingredient = new Ingredient();
         ingredient.setName(name.trim());
         ingredient.setBrand(brand.trim());
@@ -99,6 +101,8 @@ public class MealController {
         ingredient.setFatPer100g(fat);
         ingredient.setQuantity(0);
         ingredient.setProductId(productId);
+        //do service dodawanie posilku oraz tworzenie meal
+        //mealservice.addToMeal(mealId, ingedient)  based on
         ingredientService.save(ingredient);
         Meal meal = mealService.getById(mealId);
         List<Ingredient> ingredients = meal.getIngredients();
@@ -106,4 +110,7 @@ public class MealController {
         mealService.save(meal);
         return "redirect:/meal?date=" + date;
     }
+
+
+
 }
