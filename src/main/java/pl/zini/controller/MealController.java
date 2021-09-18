@@ -41,6 +41,9 @@ public class MealController {
         Plan activePlan = planService.getByUserAndIsActive(userService.getSessionUser(), 1);
         model.addAttribute("activePlan", activePlan);
         if (activePlan!= null) {
+            if (date == null) {
+                date = LocalDate.now().toString();
+            }
             List<MealName> mealNames = activePlan.getMealNames();
             model.addAttribute("mealNames", mealNames);
             mealService.createMeals(date, activePlan);
