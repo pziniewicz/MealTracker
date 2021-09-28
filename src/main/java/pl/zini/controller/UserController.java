@@ -27,6 +27,7 @@ public class UserController {
         return "user/users";
     }
 
+    //*TODO - User Controller - user details edit
     //feature will be implemented at the next step
 //    @GetMapping("/edit")
 //    public String register(Long id, Model model) {
