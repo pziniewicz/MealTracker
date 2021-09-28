@@ -27,19 +27,20 @@ public class UserController {
         return "user/users";
     }
 
-    @GetMapping("/edit")
-    public String register(Long id, Model model) {
-        User user = userService.getSessionUser();
-        model.addAttribute(user);
-        return "register";
-    }
-
-    @PostMapping("/edit")
-    public String register(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "register";
-        }
-        userService.saveUser(user);
-        return "redirect:/login";
-    }
+    //feature will be implemented at the next step
+//    @GetMapping("/edit")
+//    public String register(Long id, Model model) {
+//        User user = userService.getSessionUser();
+//        model.addAttribute(user);
+//        return "register";
+//    }
+//
+//    @PostMapping("/edit")
+//    public String register(@Valid User user, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "register";
+//        }
+//        userService.saveUser(user);
+//        return "redirect:/login";
+//    }
 }
