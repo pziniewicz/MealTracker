@@ -50,7 +50,7 @@ public class Plan {
     private Integer fatQuantity;
     private Integer isActive;
 
-    //pamietac o mappedby
+    //mappedby
     @OneToMany(mappedBy = "plan")
     private List<Meal> meals;
 

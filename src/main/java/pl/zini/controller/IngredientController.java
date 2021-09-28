@@ -47,6 +47,7 @@ public class IngredientController {
         return "redirect:/meal?date=" + date;
     }
 
+    //*TODO - Ingredient Controller - product delete
     //deletion not working yet... to develop at the next stage
 //    @RequestMapping(value = "/delete/{ingredientId}/{date}", produces = "text/plain;charset=UTF-8")
 //    @Transactional

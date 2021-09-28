@@ -47,7 +47,9 @@ public class PlanController {
         Plan plan;
         if (id != null) {
             plan = planService.getById(id);
-            // editing selected meals for the day - not working because of database configurtion
+
+            //*TODO - Plan Controller - meals deletion due to plan edition
+            // editing selected meals for the day - not working yet
 //            for (MealName mealName : mealNameService.findAll()) {
 //                boolean flag = false;
 //                for (MealName mealNamePlan : plan.getMealNames()) {

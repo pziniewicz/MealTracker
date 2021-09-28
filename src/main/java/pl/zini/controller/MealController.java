@@ -1,5 +1,6 @@
 package pl.zini.controller;
 
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -89,7 +90,11 @@ public class MealController {
                       @PathVariable BigDecimal protein,
                       @PathVariable BigDecimal fat,
                       @PathVariable Long productId) {
-        //POST
+
+        //*TODO - Meal Controller - code refacting
+        // As code refactoring and cleaning switch method to post in next app version
+        // also move some code below to service
+        // POST
         // Ingredient ing = this.ingedientFromPostData(name, brnad, calories,...)
         // mealService.addToMeal(meailId, ing);
         Ingredient ingredient = new Ingredient();
@@ -101,7 +106,7 @@ public class MealController {
         ingredient.setFatPer100g(fat);
         ingredient.setQuantity(0);
         ingredient.setProductId(productId);
-        //do service dodawanie posilku oraz tworzenie meal
+        //do service -- adding and creating meal
         //mealservice.addToMeal(mealId, ingedient)  based on
         ingredientService.save(ingredient);
         Meal meal = mealService.getById(mealId);
@@ -110,7 +115,4 @@ public class MealController {
         mealService.save(meal);
         return "redirect:/meal?date=" + date;
     }
-
-
-
 }
