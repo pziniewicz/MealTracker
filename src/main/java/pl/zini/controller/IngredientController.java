@@ -26,7 +26,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    //product search to add to meal
+    //product search to add to meal using ProductServiceApi
     @RequestMapping(value = "/search/{date}/{mealId}", produces = "text/plain;charset=UTF-8")
     @Transactional
     public String products(@PathVariable String date, @PathVariable Long mealId, @RequestParam(required = false) String search, Model model) throws IOException {
@@ -47,12 +47,12 @@ public class IngredientController {
         return "redirect:/meal?date=" + date;
     }
 
-    //deletion not working due to database configuration
-    @RequestMapping(value = "/delete/{ingredientId}/{date}", produces = "text/plain;charset=UTF-8")
-    @Transactional
-    public String delete(@PathVariable Long ingredientId, @PathVariable String date) throws IOException {
-        Ingredient ingredient = ingredientService.getById(ingredientId);
-        ingredientService.delete(ingredient);
-        return "redirect:/meal?date=" + date;
-    }
+    //deletion not working yet... to develop at the next stage
+//    @RequestMapping(value = "/delete/{ingredientId}/{date}", produces = "text/plain;charset=UTF-8")
+//    @Transactional
+//    public String delete(@PathVariable Long ingredientId, @PathVariable String date) throws IOException {
+//        Ingredient ingredient = ingredientService.getById(ingredientId);
+//        ingredientService.delete(ingredient);
+//        return "redirect:/meal?date=" + date;
+//    }
 }

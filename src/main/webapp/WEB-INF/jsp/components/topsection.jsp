@@ -26,18 +26,18 @@
                         <div class="header-button-item mr-0 js-sidebar-btn">
                             <i class="zmdi zmdi-menu"></i>
                         </div>
-                        <div class="setting-menu js-right-sidebar d-none d-lg-block">
-                            <div class="account-dropdown__body">
-                                <div class="account-dropdown__item">
-                                    <a href="/user/edit">
-                                        <i class="zmdi zmdi-account"></i>Profil</a>
-                                </div>
-                                <div class="account-dropdown__item">
-                                    <a href="#">
-                                        <i class="zmdi zmdi-settings"></i>Ustawienia</a>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <div class="setting-menu js-right-sidebar d-none d-lg-block">--%>
+<%--                            <div class="account-dropdown__body">--%>
+<%--                                <div class="account-dropdown__item">--%>
+<%--                                    <a href="/user/edit">--%>
+<%--                                        <i class="zmdi zmdi-account"></i>Profil</a>--%>
+<%--                                </div>--%>
+<%--                                <div class="account-dropdown__item">--%>
+<%--                                    <a href="#">--%>
+<%--                                        <i class="zmdi zmdi-settings"></i>Ustawienia</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>
