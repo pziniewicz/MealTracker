@@ -48,16 +48,18 @@ The app provides some data validations.<br>
 CREATE DATABASE mealtracker
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci; 
-2. Create a table roles (role_id, role) <br>
+2. Create a table roles <br>
 CREATE TABLE roles (
 role_id INT AUTO_INCREMENT PRIMARY KEY,
 role varchar);
 3. Insert user role into the roles table <br>
 INSERT INTO roles VALUES (1, 'ROLE_USER');
-4. Once having that done - visit http://localhost:8080
-5. Register yourself as new user.
-6. Now you can log in.
-7. Enjoy using _MealTracker_
+4. Open repository in your IDE
+5. Make sure to change your mysql login details in code (persistence.xml and application.properties)
+6. Once having that done - visit http://localhost:8080
+7. Register yourself as new user.
+8. Now you can log in.
+9. Enjoy using _MealTracker_
 
 
 **Have a nice time working with the app**
