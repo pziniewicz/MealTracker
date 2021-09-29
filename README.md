@@ -86,3 +86,13 @@ INSERT INTO roles VALUES (1, 'ROLE_USER');
 
 
 **Have a nice time working with the app**
+
+
+## Next stages of development
+
+1. Product delete
+2. Meal delete
+3. Some more specific details when building a plan (for example: training activity, work activeness, weight reduction, ....)
+4. User weight tracking
+5. Some graphs presenting weight development
+6. .....
