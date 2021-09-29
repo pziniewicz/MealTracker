@@ -6,7 +6,7 @@ Project is a web app, secured with login and password.
 
 ## Data - external API
 https://pl.openfoodfacts.org/discover
-MealTracker is connected to external API where from it takes the food products data and nutritin details.
+MealTracker is connected to external API where from it takes the food products data and nutrition details.
 
 
 ## Features
