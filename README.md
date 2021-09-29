@@ -11,7 +11,18 @@ MealTracker is connected to external API where from it takes the food products d
 
 ## Features
 
-* search for product - connected to external web API - realtime search
+* login <br>
+![Screen Shot 2021-09-29 at 2 43 18 pm](https://user-images.githubusercontent.com/83308656/135272280-5c06a6b4-b7d0-45f4-8552-91ca3786a8c2.png)
+
+
+* register <br>
+![Screen Shot 2021-09-29 at 2 44 24 pm](https://user-images.githubusercontent.com/83308656/135272312-a18c7930-0f8c-4c34-836f-54c473a13897.png)
+
+
+* search for product - connected to external web API - realtime search <br>
+![Screen Shot 2021-09-29 at 2 47 29 pm](https://user-images.githubusercontent.com/83308656/135272345-a28c3a4e-5c52-40af-b0ec-e0c14b5336d0.png)
+
+
 * plans management
     * create a new nutrition plan, just enter your details such as:
       *  height
@@ -19,10 +30,17 @@ MealTracker is connected to external API where from it takes the food products d
       *  age
       *  gender
       *  percentage of particular macros you want to split your daily caloric demand for
-      *  number of meals per day
+      *  number of meals per day <br>
+![Screen Shot 2021-09-29 at 2 50 01 pm](https://user-images.githubusercontent.com/83308656/135272431-36b68dbe-cd59-4178-ae66-fdb5b8dfe277.png)
+
+
     * plans management:
+      * edit plan
       * delete plan
-      * set active (just one plan can be active at the time)
+      * set active (just one plan can be active at the time) <br>
+![Screen Shot 2021-09-29 at 2 51 52 pm](https://user-images.githubusercontent.com/83308656/135272460-7758655d-f5eb-4016-bd36-9ae18e4545a1.png)
+
+
  * build your day meals - according to your active nutrition plan you can add particular product items to 
  particular meals and set the quantity of each.
  * Mealtracker recounts all macros and calories amount and presents it at the progress bar
