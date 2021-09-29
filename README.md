@@ -42,8 +42,13 @@ MealTracker is connected to external API where from it takes the food products d
 
 
  * build your day meals - according to your active nutrition plan you can add particular product items to 
- particular meals and set the quantity of each.
- * Mealtracker recounts all macros and calories amount and presents it at the progress bar
+ particular meals and set the quantity of each. <br>
+ ![image](https://user-images.githubusercontent.com/83308656/135272972-f5581fa6-46a8-4e3a-befb-190e2a183804.png)
+
+ 
+ * Mealtracker recounts all macros and calories amount and presents it at the progress bar <br>
+ ![image](https://user-images.githubusercontent.com/83308656/135273057-6f31165e-b0c9-416d-953a-b99d06192f81.png)
+
 
 
 ## Data validation
