@@ -7,8 +7,6 @@
     <artifactId>MealTracker</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <java.version>16</java.version>
-
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -76,6 +74,7 @@
     </dependencies>
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
