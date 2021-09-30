@@ -1,7 +1,11 @@
 # MealTracker
 
 _MealTracker_  project lets you track your macros and calories that you eat everyday.
+After creating your diet plan you can configure specific meals by adding specific food products. (food products source is an external open api which MelaTracker connects to).
+So once you've done that - see how you doing with macros and calories fulfillment on the progress bar.
 Project is a web app, secured with login and password.
+Still underconstuction. 
+For now only on gitHub. Soon to be published.
 
 
 ## Data - external API
