@@ -65,6 +65,7 @@ The app provides some data validations.<br>
 * Spring Boot
 * Hibernate
 * Spring security
+* MySQL database
 * jsp
 * jstl
 * MVC
